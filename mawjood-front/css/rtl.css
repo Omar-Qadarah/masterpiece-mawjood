@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Mawjood — rtl.css
+   Arabic (RTL) overrides. Applies when <html dir="rtl" lang="ar">.
+
+   base.css and components.css are written with CSS logical properties
+   (margin-inline, padding-inline, inset-inline-*, text-align: start,
+   grid/flex source order), so layout mirrors automatically. This file only
+   holds what logical properties cannot express:
+     1. Arabic font stack
+     2. Mirrored illustrations
+     3. Direction-sensitive details (numbers, icons that point somewhere)
+   Sizes, weights and spacing are identical to the English mockups.
+   ========================================================================== */
+
+/* 1. Typography ------------------------------------------------------------ */
+
+html[dir="rtl"] {
+  --font: "Noto Sans Arabic", Inter, "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+/* Arabic has no letter-spacing: tracking breaks the joined letterforms. */
+html[dir="rtl"] body,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 {
+  letter-spacing: 0;
+}
+
+/* 2. Mirrored illustrations ------------------------------------------------ */
+
+/* The hero map is mirrored so the roads and markers read right-to-left.
+   The cards on top are positioned with inset-inline-*, so they move by
+   themselves and their text is not flipped. */
+html[dir="rtl"] .hero__map-svg {
+  transform: scaleX(-1);
+}
+
+/* 3. Direction-sensitive details ------------------------------------------- */
+
+/* Icons that point somewhere (arrows, back/forward chevrons) opt in with
+   .icon--flip. Search, pin, clock, shield, lock and info stay as they are. */
+html[dir="rtl"] .icon--flip {
+  transform: scaleX(-1);
+}
+
+/* The language toggle always reads "EN | عربي", left to right. */
+html[dir="rtl"] .lang-toggle__label {
+  direction: ltr;
+}
+
+/* Latin-script content inside Arabic text (phone numbers, plan names,
+   medicine strengths) is wrapped in <bdi> or .ltr by the markup. */
+html[dir="rtl"] .ltr,
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Form fields: typed Latin queries (e.g. "Panadol") stay left-aligned in
+   the text direction of the page, so the cursor starts on the right. */
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea {
+  text-align: start;
+}

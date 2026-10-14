@@ -1,0 +1,26 @@
+/* Mawjood pharmacy login — aligned with shared site design tokens */
+.page-login{background:var(--tint);min-height:100vh}
+.login-main{padding:clamp(38px,6vw,76px) 0 84px;background:radial-gradient(ellipse at 18% 10%,#e2f5f1 0,transparent 36%),var(--tint)}
+.login-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,460px);gap:clamp(36px,7vw,100px);align-items:center;max-width:1120px}
+.login-intro{padding-block:24px}
+.login-kicker{display:inline-flex;padding:9px 13px;border-radius:999px;background:#d9f0ee;color:var(--teal);font-size:11px;font-weight:800;letter-spacing:.14em}
+.login-intro h1{max-width:560px;margin:22px 0 18px;color:var(--navy);font-size:clamp(38px,5vw,62px);line-height:1.06;letter-spacing:-.045em;font-weight:800}
+.login-intro h1 em{color:var(--teal);font-style:normal}
+.login-intro>p{max-width:500px;color:var(--muted);font-size:17px;line-height:1.8}
+.login-benefits{display:grid;gap:16px;margin-top:32px;color:var(--navy);font-weight:600}
+.login-benefit{display:flex;align-items:center;gap:12px}
+.benefit-icon{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#d9f0ee;color:var(--teal);font-weight:800;flex:none}
+.login-note{display:flex;gap:12px;max-width:500px;margin-top:38px;padding:17px 18px;border:1px solid var(--border);border-radius:var(--r-16);background:rgb(255 255 255 / .68);color:var(--muted);font-size:12px;line-height:1.7}
+.login-note>span{color:var(--teal);font-size:20px}.login-note p{margin:0}
+.login-card{padding:clamp(26px,4vw,38px);border:1px solid var(--border);border-radius:var(--r-24);background:#fff;box-shadow:var(--shadow-card)}
+.login-card__brand{display:flex;align-items:center;gap:13px}.login-card__brand img{object-fit:contain}.login-card__eyebrow{color:var(--teal);font-size:10px;letter-spacing:.12em;font-weight:800}.login-card h2{margin:5px 0 0;color:var(--navy);font-size:30px;letter-spacing:-.03em}
+.login-card__lead{margin:13px 0 25px;color:var(--muted);font-size:14px;line-height:1.6}
+#login-form{display:grid;gap:9px}#login-form>label{margin-top:8px;color:var(--navy);font-size:13px;font-weight:700}
+#login-form input[type=email],#login-form input[type=password]{box-sizing:border-box;width:100%;height:51px;padding:0 14px;border:1px solid var(--border);border-radius:var(--r-10);background:#fff;color:var(--navy);font:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+#login-form input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgb(8 127 140 / .12)}
+#login-form input::placeholder{color:var(--placeholder)}.password-wrap{position:relative}.password-wrap input{padding-inline-end:66px!important}.password-toggle{position:absolute;inset-inline-end:12px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--teal);font-size:12px;font-weight:700;cursor:pointer}
+.login-form-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 5px;font-size:12px}.remember-label{display:flex;align-items:center;gap:7px;color:var(--muted)}.remember-label input{accent-color:var(--teal)}.login-form-row a{color:var(--teal);font-weight:700;text-decoration:none}.login-form-row a:hover{text-decoration:underline}
+.login-submit{width:100%;height:52px;display:flex;justify-content:space-between;margin-top:8px}.login-message{min-height:0;margin:0;color:#9a5a00;font-size:12px;line-height:1.5}.login-message:not(:empty){padding:10px 12px;border-radius:9px;background:#fff3d9}.login-divider{display:flex;align-items:center;gap:12px;margin:25px 0 16px;color:var(--placeholder);font-size:10px;font-weight:800;letter-spacing:.1em}.login-divider:before,.login-divider:after{content:"";height:1px;flex:1;background:var(--line)}.login-contact{width:100%;box-sizing:border-box;height:48px;font-size:13px}.login-small{margin:19px 0 0;color:var(--muted);font-size:11px;line-height:1.6;text-align:center}
+[dir=rtl] .login-intro h1{letter-spacing:0;line-height:1.35}[dir=rtl] .login-kicker{letter-spacing:0}[dir=rtl] .login-submit>span:last-child{transform:scaleX(-1)}
+@media(max-width:850px){.login-layout{grid-template-columns:1fr;max-width:520px;gap:25px}.login-intro{padding:0}.login-intro h1{font-size:clamp(36px,8vw,52px)}.login-intro>p{font-size:15px}.login-benefits{grid-template-columns:1fr;gap:12px;margin-top:23px}.login-note{margin-top:24px}.login-main{padding-top:38px}}
+@media(max-width:480px){.login-card{padding:23px 20px;border-radius:18px}.login-form-row{align-items:flex-start}.login-main{padding-bottom:48px}}

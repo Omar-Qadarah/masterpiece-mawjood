@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Mawjood — base.css
+   Design tokens, reset, typography and layout primitives.
+   Source of truth: mockups/M00-design-system.svg
+   Direction-neutral: uses CSS logical properties. RTL extras live in rtl.css.
+   ========================================================================== */
+
+:root {
+  /* Brand palette */
+  --teal: #087F8C;
+  --teal-hover: #066D79;
+  --navy: #123B65;
+  --mint: #E5F7F4;
+  --white: #FFFFFF;
+
+  /* Neutrals and surfaces */
+  --muted: #5B6F82;          /* secondary text */
+  --placeholder: #8FA0AE;
+  --border: #CDE3E0;         /* all 1px outlines */
+  --line: #E3F0EE;           /* dividers, step numbers */
+  --tint: #F4FAF9;           /* trust strip, page tint */
+
+  /* Map illustration */
+  --map-bg: #DDF0ED;
+  --map-park: #C5E7DF;
+
+  /* Stock status: foreground / background */
+  --in: #0A7A4A;       --in-bg: #DCF4E7;
+  --low: #9A5A00;      --low-bg: #FFEFCF;
+  --out: #B3261E;      --out-bg: #FDE3E0;
+  --unconfirmed: #4F5E6C; --unconfirmed-bg: #E7ECEF;
+  --reported: var(--teal); --reported-bg: #D9F0EE;
+
+  /* On-navy (footer) */
+  --navy-2: #1B4C7B;         /* notice panel */
+  --navy-line: #2D5683;      /* footer divider */
+  --on-navy: #B8C9D8;
+  --on-navy-hi: #DCE7F0;
+  --on-navy-lo: #8FA6BC;
+
+  /* Controls */
+  --switch-off: #C9D6DD;
+  --input-placeholder: #9AA9B5;
+
+  /* Radius scale: 10 / 12 / 16 / 20 / 24 (+ pill) */
+  --r-10: 10px;
+  --r-12: 12px;
+  --r-16: 16px;
+  --r-20: 20px;
+  --r-24: 24px;
+  --r-pill: 999px;
+
+  /* Elevation (navy-tinted shadows) */
+  --shadow-card: 0 8px 24px rgb(18 59 101 / 0.13);
+  --shadow-pop: 0 24px 60px rgb(18 59 101 / 0.28);
+
+  /* Type */
+  --font: Inter, "Noto Sans Arabic", "Segoe UI", Arial, sans-serif;
+  --fs-display: 58px;   /* 800 */
+  --fs-heading: 34px;   /* 800 */
+  --fs-title: 22px;     /* 700 */
+  --fs-body: 16px;      /* 400 */
+  --fs-caption: 13px;   /* 500 */
+
+  /* Layout: 1440 canvas, 80px margins, 1280 content. 16px gutters on mobile. */
+  --max-w: 1440px;
+  --gutter: clamp(24px, 5.556vw, 80px);   /* 80px at 1440 (80 / 1440 = 5.556vw) */
+  --header-h: 72px;
+}
+
+@media (max-width: 639px) {
+  :root { --gutter: 16px; }
+}
+
+/* Reset ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--white);
+  color: var(--navy);
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+img, svg, video { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+button { cursor: pointer; }
+
+[hidden] { display: none !important; }
+
+/* Typography ------------------------------------------------------------- */
+
+h1, h2, h3, h4 { color: var(--navy); font-weight: 800; }
+
+.t-display { font-size: var(--fs-display); font-weight: 800; line-height: 1.172; }
+.t-heading { font-size: var(--fs-heading); font-weight: 800; line-height: 1.18; }
+.t-title   { font-size: var(--fs-title);   font-weight: 700; line-height: 1.3; }
+.t-body    { font-size: var(--fs-body);    font-weight: 400; line-height: 1.5; }
+.t-caption { font-size: var(--fs-caption); font-weight: 500; line-height: 1.4; color: var(--muted); }
+
+.text-muted { color: var(--muted); }
+.text-teal  { color: var(--teal); }
+
+/* Layout primitives ------------------------------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Show / hide by viewport (copy that differs between desktop and mobile) */
+.only-mobile { display: none !important; }
+@media (max-width: 639px) {
+  .only-desktop { display: none !important; }
+  .only-mobile { display: initial !important; }
+}
+
+/* Accessibility ---------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: 16px;
+  top: -64px;
+  z-index: 100;
+  padding: 12px 18px;
+  border-radius: var(--r-12);
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 600;
+}
+.skip-link:focus { top: 12px; }
+
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+::selection { background: var(--mint); color: var(--navy); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

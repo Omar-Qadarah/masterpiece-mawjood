@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pharmacy login · Mawjood</title>
+  <meta name="description" content="Sign in to the Mawjood pharmacy dashboard.">
+  <meta name="theme-color" content="#087F8C">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/rtl.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="page-login">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+      <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+
+      <symbol id="logo-tile" viewBox="0 0 816 816">
+        <rect width="816" height="816" rx="196" fill="#087F8C"/>
+        <g transform="translate(408 402) scale(1.12) translate(-408 -402)">
+          <path d="M409 617 L262.3 420.4 A183 183 0 1 1 555.7 420.4 Z" fill="#FFFFFF"/>
+          <circle cx="409" cy="314" r="132" fill="#087F8C"/>
+          <g transform="rotate(36 382 302)">
+            <rect x="337" y="187" width="90" height="230" rx="45" fill="#FFFFFF"/>
+            <rect x="337" y="299" width="90" height="6" fill="#087F8C"/>
+          </g>
+          <circle cx="474" cy="346" r="42" fill="#FFFFFF"/>
+          <path d="M433 359 L515 337" stroke="#087F8C" stroke-width="6"/>
+          <ellipse cx="410" cy="656" rx="120" ry="20" fill="#FFFFFF"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ===================== Header ===================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="Mawjood, home">
+        <img class="brand__lockup" src="assets/brand/lockup-on-white.svg" alt="Mawjood">
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a class="site-nav__link" href="search.html" data-i18n="nav.search">Search</a></li>
+          <li><a class="site-nav__link" href="medicine.html" data-i18n="nav.medicine">Medicine</a></li>
+          <li><a class="site-nav__link" href="pharmacy.html" data-i18n="nav.pharmacy">Pharmacy</a></li>
+          <li><a class="site-nav__link" href="for-pharmacies.html" data-i18n="nav.forPharmacies">For pharmacies</a></li>
+          <li><a class="site-nav__link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></li>
+          <li><a class="site-nav__link" href="about.html" data-i18n="nav.about">About</a></li>
+          <li class="site-nav__login"><a class="btn btn--secondary btn--sm" href="login.html" data-i18n="nav.login">Pharmacy login</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn--secondary btn--sm btn-login" href="login.html" data-i18n="nav.login">Pharmacy login</a>
+        <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch language / تغيير اللغة">
+          <svg class="icon icon--20" aria-hidden="true"><use href="#i-globe"/></svg>
+          <span class="lang-toggle__label" dir="ltr">EN | عربي</span>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-i18n-aria-label="nav.menu">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="login-main">
+    <section class="login-layout container" aria-labelledby="login-title">
+      <div class="login-intro">
+        <span class="login-kicker" data-en="PHARMACY PORTAL" data-ar="بوابة الصيدليات">PHARMACY PORTAL</span>
+        <h1 data-en="Welcome back to <em>Mawjood.</em>" data-ar="أهلاً بعودتك إلى <em>موجود.</em>">Welcome back to <em>Mawjood.</em></h1>
+        <p data-en="Manage your pharmacy listing and keep medicine availability information up to date." data-ar="أدر صفحة صيدليتك وحافظ على تحديث معلومات توفر الأدوية.">Manage your pharmacy listing and keep medicine availability information up to date.</p>
+        <div class="login-benefits">
+          <div class="login-benefit"><span class="benefit-icon">✓</span><span data-en="Update medicine availability" data-ar="تحديث توفر الأدوية">Update medicine availability</span></div>
+          <div class="login-benefit"><span class="benefit-icon">✓</span><span data-en="Manage your pharmacy profile" data-ar="إدارة ملف الصيدلية">Manage your pharmacy profile</span></div>
+          <div class="login-benefit"><span class="benefit-icon">✓</span><span data-en="Help customers find what they need" data-ar="مساعدة العملاء في العثور على ما يحتاجونه">Help customers find what they need</span></div>
+        </div>
+        <div class="login-note"><span aria-hidden="true">✦</span><p data-en="Mawjood connects people with pharmacies. Medicines are sold and dispensed by pharmacies, not by Mawjood." data-ar="يربط موجود الأشخاص بالصيدليات. بيع الأدوية وصرفها مسؤولية الصيدليات وليس موجود.">Mawjood connects people with pharmacies. Medicines are sold and dispensed by pharmacies, not by Mawjood.</p></div>
+      </div>
+      <div class="login-card">
+        <div class="login-card__brand"><img src="assets/brand/mark-teal.svg" alt="" width="44" height="44"><div><span class="login-card__eyebrow" data-en="PHARMACY ACCOUNT" data-ar="حساب الصيدلية">PHARMACY ACCOUNT</span><h2 id="login-title" data-en="Sign in" data-ar="تسجيل الدخول">Sign in</h2></div></div>
+        <p class="login-card__lead" data-en="Enter your account details to continue." data-ar="أدخل بيانات حسابك للمتابعة.">Enter your account details to continue.</p>
+        <form id="login-form" novalidate>
+          <label for="login-email" data-en="Email address" data-ar="البريد الإلكتروني">Email address</label>
+          <input id="login-email" name="email" type="email" autocomplete="username" placeholder="name@pharmacy.com" required>
+          <label for="login-password" data-en="Password" data-ar="كلمة المرور">Password</label>
+          <div class="password-wrap"><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" id="toggle-password" class="password-toggle" aria-label="Show password" data-en="Show" data-ar="إظهار">Show</button></div>
+          <div class="login-form-row"><label class="remember-label"><input type="checkbox" id="remember-me"><span data-en="Remember me" data-ar="تذكرني">Remember me</span></label><a href="#help" id="forgot-link" data-en="Forgot password?" data-ar="نسيت كلمة المرور؟">Forgot password?</a></div>
+          <p class="login-message" id="login-message" role="status" aria-live="polite"></p>
+          <button class="btn btn--primary login-submit" type="submit"><span data-en="Sign in to dashboard" data-ar="الدخول إلى لوحة التحكم">Sign in to dashboard</span><span aria-hidden="true">→</span></button>
+        </form>
+        <div class="login-divider"><span data-en="NEW TO MAWJOOD?" data-ar="جديد على موجود؟">NEW TO MAWJOOD?</span></div>
+        <a class="btn btn--secondary login-contact" href="for-pharmacies.html" data-en="Learn about joining Mawjood" data-ar="تعرف على الانضمام إلى موجود">Learn about joining Mawjood</a>
+        <p class="login-small" data-en="Demo interface · Authentication is not connected to a server yet." data-ar="واجهة تجريبية · لم يتم ربط تسجيل الدخول بخادم بعد.">Demo interface · Authentication is not connected to a server yet.</p>
+      </div>
+    </section>
+  </main>
+  <!-- ===================== Footer ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <a class="brand" href="index.html" aria-label="Mawjood, home">
+            <img class="brand__lockup" src="assets/brand/lockup-on-navy.svg" alt="Mawjood">
+          </a>
+          <p class="site-footer__tagline" data-i18n="footer.tagline">Find the pharmacy that has your medicine, before you go.</p>
+        </div>
+
+        <nav class="footer-col" aria-labelledby="footer-product">
+          <h2 class="footer-col__title" id="footer-product" data-i18n="footer.product">Product</h2>
+          <ul class="footer-col__list">
+            <li><a class="footer-col__link" href="search.html" data-i18n="footer.searchMedicines">Search medicines</a></li>
+            <li><a class="footer-col__link" href="for-pharmacies.html" data-i18n="nav.forPharmacies">For pharmacies</a></li>
+            <li><a class="footer-col__link" href="dashboard.html" data-i18n="footer.dashboardDemo">Dashboard demo</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-col" aria-labelledby="footer-company">
+          <h2 class="footer-col__title" id="footer-company" data-i18n="footer.company">Company</h2>
+          <ul class="footer-col__list">
+            <li><a class="footer-col__link" href="about.html" data-i18n="footer.aboutTrust">About and trust</a></li>
+            <li><a class="footer-col__link" href="about.html#privacy" data-i18n="footer.privacy">Privacy</a></li>
+            <li><a class="footer-col__link" href="about.html#contact" data-i18n="footer.contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <aside class="notice" aria-label="Availability notice" data-i18n-aria-label="footer.noticeAria">
+          <svg class="icon icon--20" aria-hidden="true"><use href="#i-info"/></svg>
+          <p data-i18n="footer.notice">Availability is reported by pharmacies and may change. Please confirm with your pharmacist. Mawjood does not sell or dispense medicine.</p>
+        </aside>
+      </div>
+
+      <p class="site-footer__bottom">
+        <span data-i18n="footer.copyright">© 2026 Mawjood · Sample content</span><span class="only-desktop" data-i18n="footer.copyrightSuffix"> for design purposes</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var header=document.querySelector('.site-header'),btn=document.querySelector('.nav-toggle');
+    if(header&&btn){function setOpen(v){header.classList.toggle('is-nav-open',v);btn.setAttribute('aria-expanded',String(v));}btn.addEventListener('click',function(){setOpen(!header.classList.contains('is-nav-open'));});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&header.classList.contains('is-nav-open')){setOpen(false);btn.focus();}});}
+    var toggle=document.querySelector('[data-lang-toggle]');
+    function applyLang(lang){lang=lang==='ar'?'ar':'en';document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-en][data-ar]').forEach(function(el){var val=el.getAttribute('data-'+lang);if(el.tagName==='H1')el.innerHTML=val;else el.textContent=val;});var label=document.querySelector('.lang-toggle__label');if(label)label.textContent=lang==='en'?'EN | عربي':'عربي | EN';try{localStorage.setItem('mawjood:language',lang);}catch(e){}}
+    var initial='en';try{initial=localStorage.getItem('mawjood:language')||'en';}catch(e){}applyLang(initial);if(toggle)toggle.addEventListener('click',function(){applyLang(document.documentElement.lang==='en'?'ar':'en');});
+  })();
+  </script>
+  <script src="js/login.js" defer></script>
+</body>
+</html>
