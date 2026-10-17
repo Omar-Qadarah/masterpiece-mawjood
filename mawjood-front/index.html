@@ -12,9 +12,9 @@
   <meta property="og:description" content="Check which nearby pharmacies have your medicine in stock, then send a reservation request on WhatsApp.">
   <meta property="og:type" content="website">
 
-  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="assets/brand/favicon.ico" sizes="48x48">
-  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="icon" href="assets/brand/favicon-32.png" type="image/svg+xml">
+  <link rel="icon" href="assets/brand/favicon-48.png" sizes="48x48">
+  <link rel="apple-touch-icon" href="assets/brand/favicon-180.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,17 +64,14 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="index.html" aria-label="Mawjood, home">
-        <img class="brand__lockup" src="assets/brand/lockup-on-white.svg" alt="Mawjood">
+        <svg class="brand__tile" aria-hidden="true"><use href="#logo-tile"/></svg>
+        <span class="brand__name" data-i18n="brand.name">Mawjood</span>
       </a>
 
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="index.html" data-i18n="nav.home">Home</a></li>
           <li><a class="site-nav__link" href="search.html" data-i18n="nav.search">Search</a></li>
-          <li><a class="site-nav__link" href="medicine.html" data-i18n="nav.medicine">Medicine</a></li>
-          <li><a class="site-nav__link" href="pharmacy.html" data-i18n="nav.pharmacy">Pharmacy</a></li>
           <li><a class="site-nav__link" href="for-pharmacies.html" data-i18n="nav.forPharmacies">For pharmacies</a></li>
-          <li><a class="site-nav__link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></li>
           <li><a class="site-nav__link" href="about.html" data-i18n="nav.about">About</a></li>
           <li class="site-nav__login"><a class="btn btn--secondary btn--sm" href="login.html" data-i18n="nav.login">Pharmacy login</a></li>
         </ul>
@@ -304,7 +301,8 @@
       <div class="site-footer__top">
         <div class="site-footer__brand">
           <a class="brand" href="index.html" aria-label="Mawjood, home">
-            <img class="brand__lockup" src="assets/brand/lockup-on-navy.svg" alt="Mawjood">
+            <svg class="brand__tile" aria-hidden="true"><use href="#logo-tile"/></svg>
+            <span class="brand__name" data-i18n="brand.name">Mawjood</span>
           </a>
           <p class="site-footer__tagline" data-i18n="footer.tagline">Find the pharmacy that has your medicine, before you go.</p>
         </div>

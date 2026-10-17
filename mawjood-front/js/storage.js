@@ -17,15 +17,15 @@
  *   .getFavorites(type) / .toggleFavorite(type, id) / .isFavorite(type, id)
  */
 (function (window) {
-  'use strict';
+  "use strict";
 
-  var PREFIX = 'mawjood:';
+  var PREFIX = "mawjood:";
   var KEYS = {
-    preferences: PREFIX + 'preferences',
-    recentSearches: PREFIX + 'recent-searches',
-    savedSearches: PREFIX + 'saved-searches',
-    favoriteMedicines: PREFIX + 'favorite-medicines',
-    favoritePharmacies: PREFIX + 'favorite-pharmacies'
+    preferences: PREFIX + "preferences",
+    recentSearches: PREFIX + "recent-searches",
+    savedSearches: PREFIX + "saved-searches",
+    favoriteMedicines: PREFIX + "favorite-medicines",
+    favoritePharmacies: PREFIX + "favorite-pharmacies",
   };
   var memoryFallback = Object.create(null);
 
@@ -68,37 +68,44 @@
   }
 
   function makeId() {
-    return 'saved-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+    return (
+      "saved-" +
+      Date.now().toString(36) +
+      "-" +
+      Math.random().toString(36).slice(2, 8)
+    );
   }
 
   function normaliseFavoriteType(type) {
-    if (type === 'medicine' || type === 'medicines') return 'medicine';
-    if (type === 'pharmacy' || type === 'pharmacies') return 'pharmacy';
+    if (type === "medicine" || type === "medicines") return "medicine";
+    if (type === "pharmacy" || type === "pharmacies") return "pharmacy";
     return null;
   }
 
   function getFavoriteKey(type) {
     var normalised = normaliseFavoriteType(type);
-    if (normalised === 'medicine') return KEYS.favoriteMedicines;
-    if (normalised === 'pharmacy') return KEYS.favoritePharmacies;
+    if (normalised === "medicine") return KEYS.favoriteMedicines;
+    if (normalised === "pharmacy") return KEYS.favoritePharmacies;
     return null;
   }
 
   var api = {
     // Generic helpers use keys scoped to Mawjood to avoid collisions with other apps.
     get: function (key, fallback) {
-      if (typeof key !== 'string' || !key) return fallback;
+      if (typeof key !== "string" || !key) return fallback;
       return read(PREFIX + key, fallback === undefined ? null : fallback);
     },
 
     set: function (key, value) {
-      if (typeof key !== 'string' || !key) return false;
+      if (typeof key !== "string" || !key) return false;
       return write(PREFIX + key, value);
     },
 
     remove: function (key) {
-      if (typeof key !== 'string' || !key) return;
-      try { window.localStorage.removeItem(PREFIX + key); } catch (error) {}
+      if (typeof key !== "string" || !key) return;
+      try {
+        window.localStorage.removeItem(PREFIX + key);
+      } catch (error) {}
       delete memoryFallback[PREFIX + key];
     },
 
@@ -106,18 +113,22 @@
     clearAll: function () {
       Object.keys(KEYS).forEach(function (name) {
         var key = KEYS[name];
-        try { window.localStorage.removeItem(key); } catch (error) {}
+        try {
+          window.localStorage.removeItem(key);
+        } catch (error) {}
         delete memoryFallback[key];
       });
     },
 
     getPreferences: function () {
       var value = read(KEYS.preferences, {});
-      return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+      return value && typeof value === "object" && !Array.isArray(value)
+        ? value
+        : {};
     },
 
     savePreferences: function (patch) {
-      if (!patch || typeof patch !== 'object' || Array.isArray(patch)) {
+      if (!patch || typeof patch !== "object" || Array.isArray(patch)) {
         return api.getPreferences();
       }
       var current = api.getPreferences();
@@ -134,12 +145,18 @@
     },
 
     addRecentSearch: function (query) {
-      var cleanQuery = String(query == null ? '' : query).trim();
+      var cleanQuery = String(query == null ? "" : query).trim();
       if (!cleanQuery) return api.getRecentSearches();
       var searches = api.getRecentSearches().filter(function (item) {
-        return String(item.query || '').toLocaleLowerCase() !== cleanQuery.toLocaleLowerCase();
+        return (
+          String(item.query || "").toLocaleLowerCase() !==
+          cleanQuery.toLocaleLowerCase()
+        );
       });
-      searches.unshift({ query: cleanQuery, searchedAt: new Date().toISOString() });
+      searches.unshift({
+        query: cleanQuery,
+        searchedAt: new Date().toISOString(),
+      });
       searches = searches.slice(0, 10);
       write(KEYS.recentSearches, searches);
       return searches;
@@ -156,20 +173,25 @@
 
     // Save a query and optional filter settings for later use.
     saveSearch: function (search) {
-      if (!search || typeof search !== 'object') return null;
-      var query = String(search.query == null ? '' : search.query).trim();
-      var filters = search.filters && typeof search.filters === 'object' ? search.filters : {};
+      if (!search || typeof search !== "object") return null;
+      var query = String(search.query == null ? "" : search.query).trim();
+      var filters =
+        search.filters && typeof search.filters === "object"
+          ? search.filters
+          : {};
       if (!query && Object.keys(filters).length === 0) return null;
 
       var saved = api.getSavedSearches();
       var item = {
         id: search.id || makeId(),
-        name: String(search.name || query || 'Saved search').trim(),
+        name: String(search.name || query || "Saved search").trim(),
         query: query,
         filters: filters,
-        savedAt: new Date().toISOString()
+        savedAt: new Date().toISOString(),
       };
-      var existingIndex = saved.findIndex(function (entry) { return entry.id === item.id; });
+      var existingIndex = saved.findIndex(function (entry) {
+        return entry.id === item.id;
+      });
       if (existingIndex >= 0) saved[existingIndex] = item;
       else saved.unshift(item);
       write(KEYS.savedSearches, saved.slice(0, 20));
@@ -177,7 +199,9 @@
     },
 
     removeSavedSearch: function (id) {
-      var updated = api.getSavedSearches().filter(function (item) { return item.id !== id; });
+      var updated = api.getSavedSearches().filter(function (item) {
+        return item.id !== id;
+      });
       write(KEYS.savedSearches, updated);
       return updated;
     },
@@ -190,14 +214,14 @@
     },
 
     isFavorite: function (type, id) {
-      if (id === null || id === undefined || id === '') return false;
+      if (id === null || id === undefined || id === "") return false;
       return api.getFavorites(type).indexOf(String(id)) !== -1;
     },
 
     // Adds an ID if it is not saved; otherwise removes it. Returns the new saved state.
     toggleFavorite: function (type, id) {
       var key = getFavoriteKey(type);
-      if (!key || id === null || id === undefined || id === '') return false;
+      if (!key || id === null || id === undefined || id === "") return false;
       var idString = String(id);
       var favorites = api.getFavorites(type);
       var index = favorites.indexOf(idString);
@@ -211,7 +235,7 @@
       }
       write(key, favorites);
       return isNowFavorite;
-    }
+    },
   };
 
   window.MawjoodStorage = api;

@@ -1,16 +1,126 @@
-document.addEventListener('DOMContentLoaded',function(){
-const sidebar=document.querySelector('#dash-sidebar'),menu=document.querySelector('#menu-toggle');
-menu?.addEventListener('click',()=>{const open=sidebar.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
-const body=document.querySelector('#inventory-rows'),search=document.querySelector('#inventory-search'),filter=document.querySelector('#inventory-filter'),empty=document.querySelector('#inventory-empty');
-function applyFilter(){let n=0;[...body.rows].forEach(r=>{const ok=r.dataset.name.toLowerCase().includes(search.value.trim().toLowerCase())&&(filter.value==='all'||r.dataset.stock===filter.value);r.hidden=!ok;if(ok)n++;});empty.hidden=n>0;}
-search.addEventListener('input',applyFilter);filter.addEventListener('change',applyFilter);
-const dialog=document.querySelector('#medicine-dialog'),form=document.querySelector('#medicine-form'),name=document.querySelector('#medicine-name'),price=document.querySelector('#medicine-price'),stock=document.querySelector('#medicine-stock'),old=document.querySelector('#old-name');
-function openEditor(row){form.reset();old.value=row?row.querySelector('td b').textContent:'';document.querySelector('#dialog-heading').textContent=row?'Edit medicine':'Add medicine';if(row){name.value=old.value;price.value=row.cells[2].textContent.replace(' JOD','');stock.value=row.dataset.stock;}dialog.showModal();}
-document.querySelector('#add-medicine').addEventListener('click',()=>openEditor(null));
-body.addEventListener('click',e=>{const b=e.target.closest('[data-edit]');if(b)openEditor(b.closest('tr'));});
-document.querySelector('#dialog-close').addEventListener('click',()=>dialog.close());document.querySelector('#dialog-cancel').addEventListener('click',()=>dialog.close());
-form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;let row=old.value?[...body.rows].find(r=>r.querySelector('td b').textContent===old.value):null;if(!row){row=document.createElement('tr');row.innerHTML='<td><b></b><small>Added in this demo</small></td><td><span class="stock"></span></td><td></td><td>Just now</td><td><button class="edit-row" data-edit type="button">Edit</button></td>';body.appendChild(row);}row.dataset.name=name.value;row.dataset.stock=stock.value;row.cells[0].querySelector('b').textContent=name.value;row.cells[1].innerHTML='<span class="stock '+stock.value+'">'+({in:'In stock',low:'Low stock',out:'Out of stock'}[stock.value])+'</span>';row.cells[2].textContent=Number(price.value).toFixed(3)+' JOD';row.cells[3].textContent='Just now';document.querySelector('#stat-count').textContent=body.rows.length;document.querySelector('#nav-count').textContent=body.rows.length;document.querySelector('#stat-stock').textContent=[...body.rows].filter(r=>r.dataset.stock==='in').length;dialog.close();applyFilter();});
-document.querySelector('#profile-form').addEventListener('submit',e=>{e.preventDefault();const f=document.querySelector('#profile-feedback');f.hidden=false;f.textContent='Profile details updated in this demo only; nothing has been saved or published.';});
-const reply=document.querySelector('#reply-dialog');document.querySelectorAll('[data-person]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('#reply-heading').textContent='Enquiry from '+b.dataset.person;reply.showModal();}));document.querySelector('#reply-close').addEventListener('click',()=>reply.close());document.querySelector('#reply-ok').addEventListener('click',()=>reply.close());
-document.querySelectorAll('.dash-nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.dash-nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active');if(matchMedia('(max-width:760px)').matches){sidebar.classList.remove('open');menu.setAttribute('aria-expanded','false');}}));
+document.addEventListener("DOMContentLoaded", function () {
+  const sidebar = document.querySelector("#dash-sidebar"),
+    menu = document.querySelector("#menu-toggle");
+
+  menu?.addEventListener("click", () => {
+    const open = sidebar.classList.toggle("open");
+    menu.setAttribute("aria-expanded", String(open));
+  });
+  const body = document.querySelector("#inventory-rows"),
+    search = document.querySelector("#inventory-search"),
+    filter = document.querySelector("#inventory-filter"),
+    empty = document.querySelector("#inventory-empty");
+  function applyFilter() {
+    let n = 0;
+    [...body.rows].forEach((r) => {
+      const ok =
+        r.dataset.name
+          .toLowerCase()
+          .includes(search.value.trim().toLowerCase()) &&
+        (filter.value === "all" || r.dataset.stock === filter.value);
+      r.hidden = !ok;
+      if (ok) n++;
+    });
+    empty.hidden = n > 0;
+  }
+  search.addEventListener("input", applyFilter);
+  filter.addEventListener("change", applyFilter);
+  const dialog = document.querySelector("#medicine-dialog"),
+    form = document.querySelector("#medicine-form"),
+    name = document.querySelector("#medicine-name"),
+    price = document.querySelector("#medicine-price"),
+    stock = document.querySelector("#medicine-stock"),
+    old = document.querySelector("#old-name");
+  function openEditor(row) {
+    form.reset();
+    old.value = row ? row.querySelector("td b").textContent : "";
+    document.querySelector("#dialog-heading").textContent = row
+      ? "Edit medicine"
+      : "Add medicine";
+    if (row) {
+      name.value = old.value;
+      price.value = row.cells[2].textContent.replace(" JOD", "");
+      stock.value = row.dataset.stock;
+    }
+    dialog.showModal();
+  }
+  document
+    .querySelector("#add-medicine")
+    .addEventListener("click", () => openEditor(null));
+  body.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-edit]");
+    if (b) openEditor(b.closest("tr"));
+  });
+  document
+    .querySelector("#dialog-close")
+    .addEventListener("click", () => dialog.close());
+  document
+    .querySelector("#dialog-cancel")
+    .addEventListener("click", () => dialog.close());
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    let row = old.value
+      ? [...body.rows].find(
+          (r) => r.querySelector("td b").textContent === old.value,
+        )
+      : null;
+    if (!row) {
+      row = document.createElement("tr");
+      row.innerHTML =
+        '<td><b></b><small>Added in this demo</small></td><td><span class="stock"></span></td><td></td><td>Just now</td><td><button class="edit-row" data-edit type="button">Edit</button></td>';
+      body.appendChild(row);
+    }
+    row.dataset.name = name.value;
+    row.dataset.stock = stock.value;
+    row.cells[0].querySelector("b").textContent = name.value;
+    row.cells[1].innerHTML =
+      '<span class="stock ' +
+      stock.value +
+      '">' +
+      { in: "In stock", low: "Low stock", out: "Out of stock" }[stock.value] +
+      "</span>";
+    row.cells[2].textContent = Number(price.value).toFixed(3) + " JOD";
+    row.cells[3].textContent = "Just now";
+    document.querySelector("#stat-count").textContent = body.rows.length;
+    document.querySelector("#nav-count").textContent = body.rows.length;
+    document.querySelector("#stat-stock").textContent = [...body.rows].filter(
+      (r) => r.dataset.stock === "in",
+    ).length;
+    dialog.close();
+    applyFilter();
+  });
+  document.querySelector("#profile-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = document.querySelector("#profile-feedback");
+    f.hidden = false;
+    f.textContent =
+      "Profile details updated in this demo only; nothing has been saved or published.";
+  });
+  const reply = document.querySelector("#reply-dialog");
+  document.querySelectorAll("[data-person]").forEach((b) =>
+    b.addEventListener("click", () => {
+      document.querySelector("#reply-heading").textContent =
+        "Enquiry from " + b.dataset.person;
+      reply.showModal();
+    }),
+  );
+  document
+    .querySelector("#reply-close")
+    .addEventListener("click", () => reply.close());
+  document
+    .querySelector("#reply-ok")
+    .addEventListener("click", () => reply.close());
+  document.querySelectorAll(".dash-nav a").forEach((a) =>
+    a.addEventListener("click", () => {
+      document
+        .querySelectorAll(".dash-nav a")
+        .forEach((x) => x.classList.remove("active"));
+      a.classList.add("active");
+      if (matchMedia("(max-width:760px)").matches) {
+        sidebar.classList.remove("open");
+        menu.setAttribute("aria-expanded", "false");
+      }
+    }),
+  );
 });
