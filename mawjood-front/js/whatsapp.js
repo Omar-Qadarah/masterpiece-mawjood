@@ -1,141 +1,75 @@
-/* Mawjood WhatsApp request helper.
-   Demo only: this opens WhatsApp with a prefilled message; it does not send or store the request.
-   Before launch, replace the demo number below with the pharmacy's verified WhatsApp number. */
+/** Reservation preview; never sends an enquiry to an unverified demo number. */
 (function (window, document) {
-  "use strict";
-
-  var DEFAULT_PHARMACY_NAME = "Al-Shifa Pharmacy";
-  // WhatsApp numbers must be international digits only: country code + number, without +, spaces, or dashes.
-  var DEFAULT_WHATSAPP_NUMBER = "96260000001"; // DEMO NUMBER — replace before production.
-
-  function cleanText(value) {
-    return String(value == null ? "" : value).trim();
-  }
-
-  function getLanguage() {
-    return document.documentElement.lang === "ar" ? "ar" : "en";
-  }
+  'use strict';
+  const isArabic = () => document.documentElement.lang === 'ar';
+  const clean = value => String(value ?? '').trim();
 
   function buildMessage(details) {
-    var isArabic = getLanguage() === "ar";
-    var pharmacy = cleanText(details.pharmacyName) || DEFAULT_PHARMACY_NAME;
-    var medicine = cleanText(details.medicine);
-    var name = cleanText(details.name);
-    var phone = cleanText(details.phone);
-    var note = cleanText(details.note);
-
-    if (isArabic) {
-      return (
-        "مرحباً " +
-        pharmacy +
-        "، أود الاستفسار عن حجز الدواء التالي." +
-        "\nالدواء: " +
-        medicine +
-        "\nالاسم: " +
-        name +
-        "\nرقم الهاتف: " +
-        phone +
-        (note ? "\nملاحظات: " + note : "") +
-        "\nيرجى تأكيد التوفر وأي متطلبات للوصفة الطبية."
-      );
-    }
-
-    return (
-      "Hello " +
-      pharmacy +
-      ", I would like to ask about reserving this medicine." +
-      "\nMedicine: " +
-      medicine +
-      "\nName: " +
-      name +
-      "\nPhone: " +
-      phone +
-      (note ? "\nNote: " + note : "") +
-      "\nPlease confirm availability and any prescription requirements."
-    );
+    const pharmacy = clean(details.pharmacyName) || 'Pharmacy';
+    const medicine = clean(details.medicine);
+    const customer = clean(details.name);
+    const phone = clean(details.phone);
+    const note = clean(details.note);
+    return isArabic()
+      ? `مرحباً ${pharmacy}، أرغب في الاستفسار عن حجز الدواء التالي.\nالدواء: ${medicine}\nالاسم: ${customer}\nرقم الهاتف: ${phone}${note ? '\nملاحظات: ' + note : ''}\nيرجى تأكيد التوفر ومتطلبات الوصفة الطبية.`
+      : `Hello ${pharmacy}, I would like to ask about reserving a medicine.\nMedicine: ${medicine}\nName: ${customer}\nPhone: ${phone}${note ? '\nNote: ' + note : ''}\nPlease confirm availability and any prescription requirements.`;
   }
 
-  function normalizeNumber(number) {
-    // Keep digits only; the wa.me endpoint requires an international number without punctuation.
-    return cleanText(number).replace(/\D/g, "");
+  function createUrl(number, text) {
+    const digits = clean(number).replace(/\D/g, '');
+    if (!/^\d{8,15}$/.test(digits)) throw new Error('Verified WhatsApp number required.');
+    return 'https://wa.me/' + digits + '?text=' + encodeURIComponent(text);
   }
 
-  function createUrl(number, message) {
-    var normalized = normalizeNumber(number);
-    if (!normalized) {
-      throw new Error("A valid pharmacy WhatsApp number is required.");
-    }
-    return (
-      "https://wa.me/" + normalized + "?text=" + encodeURIComponent(message)
-    );
-  }
-
-  function showFeedback(form, message) {
-    var feedback =
-      form.querySelector("#reservation-feedback") ||
-      form.querySelector("[data-whatsapp-feedback]");
-    if (!feedback) return;
-    feedback.hidden = false;
-    feedback.textContent = message;
-  }
-
-  function handleReservationForm(form) {
-    if (form.dataset.whatsappBound === "true") return;
-    form.dataset.whatsappBound = "true";
-
-    form.addEventListener("submit", function (event) {
+  function init(form) {
+    if (form.dataset.whatsappBound) return;
+    form.dataset.whatsappBound = 'true';
+    form.addEventListener('submit', event => {
       event.preventDefault();
       if (!form.reportValidity()) return;
-
-      var data = new FormData(form);
-      var pharmacyName = form.dataset.pharmacyName || DEFAULT_PHARMACY_NAME;
-      var whatsappNumber =
-        form.dataset.whatsappNumber || DEFAULT_WHATSAPP_NUMBER;
-      var message = buildMessage({
-        pharmacyName: pharmacyName,
-        medicine: data.get("medicine"),
-        name: data.get("name"),
-        phone: data.get("phone"),
-        note: data.get("note"),
+      const fields = new FormData(form);
+      const message = buildMessage({
+        pharmacyName: form.dataset.pharmacyName,
+        medicine: fields.get('medicine'),
+        name: fields.get('name'),
+        phone: fields.get('phone'),
+        note: fields.get('note')
       });
+      const feedback = form.querySelector('#reservation-feedback');
+      if (!feedback) return;
+      feedback.hidden = false;
 
-      try {
-        var url = createUrl(whatsappNumber, message);
-        // Open directly from the submit gesture to reduce popup-blocking risk.
-        var whatsappWindow = window.open(url, "_blank");
-        if (whatsappWindow) whatsappWindow.opener = null;
-        showFeedback(
-          form,
-          getLanguage() === "ar"
-            ? "تم تجهيز الطلب. راجع الرسالة في واتساب ثم أرسلها إلى الصيدلية."
-            : "Your request is ready. Review the message in WhatsApp, then send it to the pharmacy.",
-        );
-      } catch (error) {
-        showFeedback(
-          form,
-          getLanguage() === "ar"
-            ? "تعذر فتح واتساب. يرجى التحقق من رقم واتساب الخاص بالصيدلية."
-            : "WhatsApp could not be opened. Please check the pharmacy WhatsApp number.",
-        );
+      // This project contains fabricated phone numbers. Requiring a separately
+      // verified number prevents accidental WhatsApp requests to real strangers.
+      if (form.dataset.whatsappVerified !== 'true') {
+        feedback.textContent = isArabic()
+          ? 'طلب تجريبي فقط: لا يوجد رقم واتساب موثّق لهذه الصيدلية. يمكنك مراجعة نص الرسالة أدناه دون إرسالها.'
+          : 'Demo preview only: this pharmacy has no verified WhatsApp number. Review the draft below; nothing has been sent.';
+        let preview = form.querySelector('#whatsapp-preview');
+        if (!preview) {
+          preview = document.createElement('textarea');
+          preview.id = 'whatsapp-preview';
+          preview.className = 'whatsapp-preview';
+          preview.rows = 7;
+          preview.readOnly = true;
+          preview.setAttribute('aria-label', 'Reservation message preview');
+          feedback.insertAdjacentElement('afterend', preview);
+        }
+        preview.value = message;
+        return;
       }
+      try {
+        const url = createUrl(form.dataset.whatsappNumber, message);
+        const popup = window.open(url, '_blank', 'noopener,noreferrer');
+        feedback.textContent = popup === null
+          ? (isArabic() ? 'المتصفح منع النافذة الجديدة؛ حاول السماح بالنوافذ المنبثقة.' : 'Popup blocked. Allow popups to open WhatsApp.')
+          : (isArabic() ? 'راجع الرسالة في واتساب قبل إرسالها.' : 'Review the WhatsApp message before sending.');
+      } catch (error) { feedback.textContent = error.message; }
     });
   }
 
-  function init() {
-    document
-      .querySelectorAll("#reservation-form, [data-whatsapp-reservation-form]")
-      .forEach(handleReservationForm);
-  }
-
-  window.MawjoodWhatsApp = {
-    buildMessage: buildMessage,
-    createUrl: createUrl,
-    init: init,
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  const ready = () => document.querySelectorAll('#reservation-form, [data-whatsapp-reservation-form]').forEach(init);
+  window.MawjoodWhatsApp = { buildMessage, createUrl, init: ready };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready, { once: true });
+  else ready();
 })(window, document);

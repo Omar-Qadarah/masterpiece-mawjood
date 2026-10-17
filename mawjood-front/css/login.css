@@ -24,3 +24,13 @@
 [dir=rtl] .login-intro h1{letter-spacing:0;line-height:1.35}[dir=rtl] .login-kicker{letter-spacing:0}[dir=rtl] .login-submit>span:last-child{transform:scaleX(-1)}
 @media(max-width:850px){.login-layout{grid-template-columns:1fr;max-width:520px;gap:25px}.login-intro{padding:0}.login-intro h1{font-size:clamp(36px,8vw,52px)}.login-intro>p{font-size:15px}.login-benefits{grid-template-columns:1fr;gap:12px;margin-top:23px}.login-note{margin-top:24px}.login-main{padding-top:38px}}
 @media(max-width:480px){.login-card{padding:23px 20px;border-radius:18px}.login-form-row{align-items:flex-start}.login-main{padding-bottom:48px}}
+
+/* Browser-only sign-in / sign-up tabs */
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;margin:0 0 18px;border-radius:12px;background:#edf5f5}
+.auth-tab{min-height:40px;border:0;border-radius:9px;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.auth-tab.is-active{background:#fff;color:var(--teal);box-shadow:0 1px 5px rgb(12 50 60 / .1)}
+#signup-form{display:grid;gap:9px}
+#signup-form[hidden],#login-form[hidden]{display:none!important}
+#signup-form>label{margin-top:8px;color:var(--navy);font-size:13px;font-weight:700}
+#signup-form input{box-sizing:border-box;width:100%;height:51px;padding:0 14px;border:1px solid var(--border);border-radius:var(--r-10);background:#fff;color:var(--navy);font:inherit;outline:none}
+#signup-form input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgb(8 127 140 / .12)}

@@ -27,6 +27,7 @@
     var viewButtons = document.querySelectorAll('[data-view]');
     var resultsMain = document.querySelector('.results-main');
     var pageSize = 4;
+    var localized = function (en, ar) { return document.documentElement.lang === 'ar' ? ar : en; };
     var visibleLimit = pageSize;
     var currentRows = [];
 
@@ -61,24 +62,24 @@
     }
 
     function formatPrice(price) {
-      if (price == null || !Number.isFinite(Number(price))) return 'Price not listed';
-      return Number(price).toFixed(2) + ' JOD';
+      if (price == null || !Number.isFinite(Number(price))) return localized('Price not listed', 'السعر غير مذكور');
+      return Number(price).toFixed(3) + ' JOD';
     }
 
     function formatUpdated(minutes) {
       var value = Number(minutes);
-      if (!Number.isFinite(value) || value < 0) return 'Update time not provided';
-      if (value < 60) return 'Updated ' + value + ' min ago';
-      if (value < 1440) return 'Updated ' + Math.floor(value / 60) + ' h ago';
+      if (!Number.isFinite(value) || value < 0) return localized('Update time not provided', 'وقت التحديث غير متاح');
+      if (value < 60) return localized('Updated ' + value + ' min ago', 'تحديث قبل ' + value + ' دقيقة');
+      if (value < 1440) return localized('Updated ' + Math.floor(value / 60) + ' h ago', 'تحديث قبل ' + Math.floor(value / 60) + ' ساعة');
       var days = Math.floor(value / 1440);
-      return 'Updated ' + days + (days === 1 ? ' day ago' : ' days ago');
+      return localized('Updated ' + days + (days === 1 ? ' day ago' : ' days ago'), 'تحديث قبل ' + days + ' يوم');
     }
 
     function getStatus(status) {
-      if (status === 'in') return { label: 'In stock', className: 'badge--in' };
-      if (status === 'low') return { label: 'Low stock', className: 'badge--low' };
-      if (status === 'out') return { label: 'Out of stock', className: 'badge--unknown' };
-      return { label: 'Unconfirmed', className: 'badge--unknown' };
+      if (status === 'in') return { label: localized('In stock', 'متوفر'), className: 'badge--in' };
+      if (status === 'low') return { label: localized('Low stock', 'كمية محدودة'), className: 'badge--low' };
+      if (status === 'out') return { label: localized('Out of stock', 'غير متوفر'), className: 'badge--out' };
+      return { label: localized('Unconfirmed', 'غير مؤكد'), className: 'badge--unknown' };
     }
 
     function getSortValue() {
@@ -129,14 +130,14 @@
       var distance = Number(pharmacy.distanceKm);
       var distanceText = Number.isFinite(distance) ? distance.toFixed(1) + ' km' : 'Distance unavailable';
       var areaText = [pharmacy.area, pharmacy.city].filter(Boolean).join(', ');
-      var openText = pharmacy.isOpen ? pharmacy.hoursText : 'Closed';
+      var openText = pharmacy.isOpen ? pharmacy.hoursText : localized('Closed', 'مغلق');
       var medicineName = medicine ? medicine.name : 'Medicine';
       var pharmacyUrl = 'pharmacy.html?pharmacy=' + encodeURIComponent(pharmacy.id) +
         '&medicine=' + encodeURIComponent(medicine ? medicine.id : '');
       var medicineUrl = 'medicine.html?id=' + encodeURIComponent(medicine ? medicine.id : '');
       var phone = String(pharmacy.phone || '').replace(/[^+\d]/g, '');
       var mapsUrl = pharmacy.mapsUrl || ('https://maps.google.com/?q=' + encodeURIComponent(pharmacy.address || pharmacy.name));
-      var requestLabel = row.status === 'out' ? 'Ask pharmacy' : 'Request reservation';
+      var requestLabel = row.status === 'out' ? localized('Ask pharmacy', 'استفسر من الصيدلية') : localized('Request reservation', 'طلب حجز');
 
       return '<article class="pharmacy-card card" data-stock="' + escapeHtml(row.status) + '"' +
         ' data-open="' + (pharmacy.isOpen ? 'yes' : 'no') + '" data-distance="' + escapeHtml(distance) + '">' +
@@ -151,9 +152,9 @@
         '</div>' +
         '<div class="pharmacy-card__actions">' +
           '<a class="btn ' + (row.status === 'out' ? 'btn--secondary' : 'btn--primary') + ' btn--sm" href="' + escapeHtml(pharmacyUrl) + '">' + requestLabel + '</a>' +
-          (phone ? '<a class="action-link" href="tel:' + escapeHtml(phone) + '">Call</a>' : '') +
-          '<a class="action-link" href="' + escapeHtml(mapsUrl) + '" target="_blank" rel="noopener noreferrer">Route</a>' +
-          '<a class="action-link" href="' + escapeHtml(medicineUrl) + '">Medicine details</a>' +
+          (phone ? '<span class="action-link action-link--disabled" title="Demo number not verified">' + localized('Call unavailable (demo)', 'الاتصال غير متاح (تجريبي)') + '</span>' : '') +
+          '<a class="action-link" href="' + escapeHtml(mapsUrl) + '" target="_blank" rel="noopener noreferrer">' + localized('Route', 'الاتجاهات') + '</a>' +
+          '<a class="action-link" href="' + escapeHtml(medicineUrl) + '">' + localized('Medicine details', 'تفاصيل الدواء') + '</a>' +
         '</div>' +
       '</article>';
     }
@@ -167,24 +168,27 @@
       if (emptyState) {
         emptyState.hidden = count > 0;
         if (!count) {
-          emptyState.textContent = 'No pharmacy stock records match your search and filters. Try another medicine, city, or a wider distance.';
+          emptyState.textContent = localized('No pharmacy stock records match your search and filters. Try another medicine, city, or a wider distance.', 'لا توجد نتائج تطابق البحث والفلاتر. جرّب دواءً آخر أو مدينة أخرى أو مسافة أكبر.');
         }
       }
 
       var cityName = cityFilter && cityFilter.value ? cityFilter.options[cityFilter.selectedIndex].text : 'all cities';
       if (resultsHeading) {
-        resultsHeading.textContent = count + (count === 1 ? ' result' : ' results') + ' · ' + cityName;
+        resultsHeading.textContent = localized(count + (count === 1 ? ' result' : ' results') + ' · ' + cityName, count + ' نتيجة · ' + cityName);
       }
       if (resultsSummary) {
-        resultsSummary.textContent = 'Sorted by ' + (getSortValue() === 'availability' ? 'availability' : 'distance') +
-          ' · Sample pharmacy data';
+        resultsSummary.textContent = localized('Sorted by ' + (getSortValue() === 'availability' ? 'availability' : 'distance') +
+          ' · Sample pharmacy data', 'الترتيب حسب ' + (getSortValue() === 'availability' ? 'التوفر' : 'المسافة') + ' · بيانات تجريبية');
       }
       if (distanceValue && distanceFilter) distanceValue.textContent = distanceFilter.value + ' km';
 
       if (moreButton) {
         moreButton.hidden = count <= pageSize || visibleLimit >= count;
-        moreButton.textContent = 'Show ' + Math.max(0, count - visibleLimit) + ' more results';
+        moreButton.textContent = localized('Show ' + Math.max(0, count - visibleLimit) + ' more results', 'عرض ' + Math.max(0, count - visibleLimit) + ' نتائج إضافية');
       }
+
+      // Keep the map synchronized with the same filtered records as the list.
+      document.dispatchEvent(new CustomEvent('mawjood:resultschange', { detail: { rows: currentRows.slice() } }));
     }
 
     // A new search starts at the first page of results.
@@ -194,7 +198,10 @@
         visibleLimit = pageSize;
         var url = new URL(window.location.href);
         var value = queryInput ? queryInput.value.trim() : '';
-        if (value) url.searchParams.set('q', value);
+        if (value) {
+          url.searchParams.set('q', value);
+          window.MawjoodStorage?.addRecentSearch(value);
+        }
         else url.searchParams.delete('q');
         window.history.replaceState({}, '', url.pathname + url.search + url.hash);
         render();
@@ -253,6 +260,8 @@
       });
     });
 
+    window.MawjoodSearch = { getResults: () => currentRows.slice(), refresh: render };
+    document.addEventListener('mawjood:languagechange', render);
     render();
   });
 })();

@@ -328,11 +328,10 @@
   gap: 12px;
   color: var(--navy);
 }
-.brand__tile { width: 40px; height: 40px; flex: none; }
-.brand__name { font-size: 22.4px; font-weight: 800; line-height: 1; }
+.brand__lockup { display: block; width: 136px; height: auto; max-height: 38px; object-fit: contain; flex: none; }
 
-.site-nav { margin-inline-start: 88px; }
-.site-nav__list { display: flex; align-items: center; gap: 46px; }
+.site-nav { margin-inline-start: auto; }
+.site-nav__list { display: flex; align-items: center; gap: clamp(8px, 1.15vw, 18px); }
 .site-nav__link {
   display: inline-flex;
   align-items: center;
@@ -697,11 +696,10 @@
 }
 
 /* Compact: hamburger nav, no map ------------------------------------------- */
-@media (max-width: 899px) {
+@media (max-width: 1120px) {
   :root { --header-h: 64px; }
 
-  .brand__tile { width: 36px; height: 36px; }
-  .brand__name { font-size: 20.16px; }
+  .brand__lockup { width: 120px; max-height: 34px; }
 
   .header-actions { gap: 4px; }
   .header-actions .btn-login { display: none; }
@@ -849,8 +847,7 @@
   /* Footer: mark + notice only */
   .site-footer__top { display: block; padding-top: 28px; }
   .site-footer .brand { margin-top: 0; }
-  .site-footer .brand__tile { width: 34px; height: 34px; }
-  .site-footer .brand__name { font-size: 19px; }
+  .site-footer .brand__lockup { width: 128px; max-height: 35px; }
   .site-footer__tagline,
   .footer-col { display: none; }
   .site-footer .notice { max-width: none; margin-top: 22px; padding: 16px 16px 8px; }
@@ -877,3 +874,10 @@
   }
   .site-footer .notice { grid-column: 1 / -1; max-width: 520px; }
 }
+
+/* Official Mawjood brand lockups and full site navigation */
+.brand { min-width: 136px; }
+.site-nav__link { font-size: 13px; white-space: nowrap; }
+.site-nav__list { gap: clamp(7px, .9vw, 14px); }
+.site-footer .brand__lockup { width: 150px; max-height: 42px; }
+@media (max-width: 1120px) { .site-nav__link { font-size: 16px; } }

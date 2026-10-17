@@ -1,279 +1,136 @@
-/*
- * Mawjood internationalization (i18n).
- * Supports English and Arabic, saves the chosen language, translates elements
- * marked with data-i18n, and switches the page direction for Arabic.
- * Add translations by using the same key in both dictionaries below.
+/**
+ * English / Arabic content translation using the project's static phrase dictionary.
+ * Works on existing markup and text inserted later by page scripts. User inputs,
+ * URLs, SVG artwork and account data are never rewritten by the translator.
  */
 (function () {
-  "use strict";
+  'use strict';
 
-  var STORAGE_KEY = "mawjood:language";
-  var DEFAULT_LANGUAGE = "en";
-
-  // English strings are fallbacks and also document the meaning of each key.
-  var translations = {
-    en: {
-      "a11y.skip": "Skip to content",
-      "brand.name": "Mawjood",
-      "nav.search": "Search",
-      "nav.forPharmacies": "For pharmacies",
-      "nav.about": "About",
-      "nav.login": "Pharmacy login",
-      "nav.menu": "Menu",
-      "login.title": "Manage your stock in one tap.",
-      "login.lede":
-        "Sign in to update availability, see patient requests, and confirm stock.",
-      "login.kicker": "For licensed pharmacies",
-      "login.b1": "Licensed pharmacies only",
-      "login.b2": "Stock verified by you",
-      "login.b3": "WhatsApp requests, no commission",
-      "login.heading": "Pharmacy login",
-      "login.sub": "Use your JFDA licence number and phone.",
-      "login.licence": "JFDA licence number",
-      "login.phone": "Phone number",
-      "login.password": "Password",
-      "login.remember": "Keep me signed in",
-      "login.forgot": "Forgot password?",
-      "login.submit": "Sign in",
-      "login.divider": "New to Mawjood?",
-      "login.join": "Join as a pharmacy",
-      "login.legal": "By signing in you agree to our Terms and Privacy.",
-      "login.demo": "Demo only: any credentials open the sample dashboard.",
-      "hero.badge": "Live stock · Amman & Zarqa",
-      "hero.title1": "Find the pharmacy",
-      "hero.title2": "that has your medicine.",
-      "hero.lede1":
-        "Check which nearby pharmacies have your medicine in stock,",
-      "hero.lede2": "then send a reservation request on WhatsApp.",
-      "hero.lede2Short": "then request on WhatsApp.",
-      "search.label": "Search for a medicine",
-      "search.placeholder": "Search a medicine, e.g. Panadol Extra",
-      "search.placeholderShort": "Search a medicine…",
-      "search.submit": "Search",
-      "search.useLocation": "Use my location",
-      "search.cityLabel": "City",
-      "city.amman": "Amman",
-      "city.zarqa": "Zarqa",
-      "search.popular": "Popular",
-      "popular.panadol": "Panadol",
-      "popular.augmentin": "Augmentin",
-      "popular.ventolin": "Ventolin",
-      "popular.insulin": "Insulin",
-      "map.medicine": "Panadol Extra 500 mg",
-      "map.nearby": "9 pharmacies nearby",
-      "sample.pharmacy": "Al-Shifa Pharmacy",
-      "sample.location": "Abdoun, Amman · 0.8 km",
-      "status.in": "In stock",
-      "sample.updated": "Updated 12 min ago",
-      "sample.request": "Request",
-      "sample.aria": "Example pharmacy result",
-      "how.title": "How it works",
-      "how.sub": "Three steps from “do you have it?” to “see you soon”.",
-      "how.s1.title": "Search",
-      "how.s1.desc": "Type the medicine name or scan its barcode.",
-      "how.s2.title": "See who has it",
-      "how.s2.desc": "Compare nearby pharmacies by stock, distance and hours.",
-      "how.s2.descShort": "Compare nearby pharmacies by stock and distance.",
-      "how.s3.title": "Request on WhatsApp",
-      "how.s3.desc": "Send a reservation request. The pharmacist confirms.",
-      "how.s3.descShort": "The pharmacist confirms your request.",
-      "trust.aria": "Why people trust Mawjood",
-      "trust.licensed": "Reported by licensed pharmacies",
-      "trust.noSale": "We never sell medicine",
-      "trust.updated": "Stock updates are provided by pharmacies",
-      "footer.tagline":
-        "Find the pharmacy that has your medicine, before you go.",
-      "footer.product": "Product",
-      "footer.searchMedicines": "Search medicines",
-      "footer.dashboardDemo": "Dashboard demo",
-      "footer.company": "Company",
-      "footer.aboutTrust": "About and trust",
-      "footer.privacy": "Privacy",
-      "footer.contact": "Contact",
-      "footer.noticeAria": "Availability notice",
-      "footer.notice":
-        "Availability is reported by pharmacies and may change. Please confirm with your pharmacist. Mawjood does not sell or dispense medicine.",
-      "footer.copyright": "© 2026 Mawjood · Sample content",
-      "footer.copyrightSuffix": " for design purposes",
-    },
-    ar: {
-      "a11y.skip": "انتقل إلى المحتوى",
-      "brand.name": "موجود",
-      "nav.search": "ابحث عن دواء",
-      "nav.forPharmacies": "للصيدليات",
-      "nav.about": "عن موجود",
-      "nav.login": "دخول الصيدلية",
-      "nav.menu": "القائمة",
-      "login.title": "أدر مخزونك بلمسة واحدة.",
-      "login.lede":
-        "سجّل الدخول لتحديث التوفر ومتابعة طلبات المرضى وتأكيد المخزون.",
-      "login.kicker": "للصيدليات المرخصة",
-      "login.b1": "صيدليات مرخصة فقط",
-      "login.b2": "المخزون موثّق من قبلك",
-      "login.b3": "طلبات واتساب بدون عمولة",
-      "login.heading": "دخول الصيدلية",
-      "login.sub":
-        "استخدم رقم ترخيص المؤسسة العامة للغذاء والدواء ورقم الهاتف.",
-      "login.licence": "رقم ترخيص المؤسسة",
-      "login.phone": "رقم الهاتف",
-      "login.password": "كلمة المرور",
-      "login.remember": "أبقني مسجلاً",
-      "login.forgot": "نسيت كلمة المرور؟",
-      "login.submit": "تسجيل الدخول",
-      "login.divider": "جديد على موجود؟",
-      "login.join": "انضم كصيدلية",
-      "login.legal": "بتسجيل الدخول فإنك توافق على الشروط والخصوصية.",
-      "login.demo": "نسخة تجريبية: أي بيانات دخول تفتح لوحة التحكم.",
-      "hero.badge": "توفر الأدوية · عمّان والزرقاء",
-      "hero.title1": "اعثر على الصيدلية",
-      "hero.title2": "التي يتوفر لديها دواؤك.",
-      "hero.lede1": "تحقق من الصيدليات القريبة التي يتوفر لديها دواؤك،",
-      "hero.lede2": "ثم أرسل طلب حجز عبر واتساب.",
-      "hero.lede2Short": "ثم أرسل طلبًا عبر واتساب.",
-      "search.label": "ابحث عن دواء",
-      "search.placeholder": "ابحث عن دواء، مثل بانادول إكسترا",
-      "search.placeholderShort": "ابحث عن دواء…",
-      "search.submit": "بحث",
-      "search.useLocation": "استخدم موقعي",
-      "search.cityLabel": "المدينة",
-      "city.amman": "عمّان",
-      "city.zarqa": "الزرقاء",
-      "search.popular": "الأكثر بحثًا",
-      "popular.panadol": "بانادول",
-      "popular.augmentin": "أوجمنتين",
-      "popular.ventolin": "فنتولين",
-      "popular.insulin": "إنسولين",
-      "map.medicine": "بانادول إكسترا 500 ملغ",
-      "map.nearby": "9 صيدليات قريبة",
-      "sample.pharmacy": "صيدلية الشفاء",
-      "sample.location": "عبدون، عمّان · 0.8 كم",
-      "status.in": "متوفر",
-      "sample.updated": "آخر تحديث قبل 12 دقيقة",
-      "sample.request": "اطلب",
-      "sample.aria": "مثال على نتيجة صيدلية",
-      "how.title": "كيف يعمل الموقع",
-      "how.sub": "ثلاث خطوات من السؤال عن الدواء إلى تأكيد الطلب.",
-      "how.s1.title": "ابحث",
-      "how.s1.desc": "اكتب اسم الدواء أو امسح الرمز الشريطي.",
-      "how.s2.title": "اعرف مكان توفره",
-      "how.s2.desc": "قارن الصيدليات القريبة حسب التوفر والمسافة وساعات العمل.",
-      "how.s2.descShort": "قارن الصيدليات القريبة حسب التوفر والمسافة.",
-      "how.s3.title": "أرسل الطلب عبر واتساب",
-      "how.s3.desc": "أرسل طلب حجز، ثم تنتظر تأكيد الصيدلي.",
-      "how.s3.descShort": "يؤكد الصيدلي طلبك.",
-      "trust.aria": "لماذا يثق الناس بموجود",
-      "trust.licensed": "معلومات من صيدليات مرخصة",
-      "trust.noSale": "نحن لا نبيع الأدوية",
-      "trust.updated": "تحدّث الصيدليات معلومات التوفر",
-      "footer.tagline": "اعرف الصيدلية التي يتوفر لديها دواؤك قبل أن تذهب.",
-      "footer.product": "الخدمات",
-      "footer.searchMedicines": "البحث عن الأدوية",
-      "footer.dashboardDemo": "تجربة لوحة التحكم",
-      "footer.company": "الشركة",
-      "footer.aboutTrust": "عن موجود والثقة",
-      "footer.privacy": "الخصوصية",
-      "footer.contact": "تواصل معنا",
-      "footer.noticeAria": "تنبيه حول توفر الأدوية",
-      "footer.notice":
-        "تُقدّم الصيدليات معلومات التوفر وقد تتغير. يرجى التأكد من الصيدلي. لا يبيع موجود الأدوية ولا يصرفها.",
-      "footer.copyright": "© 2026 موجود · محتوى تجريبي",
-      "footer.copyrightSuffix": " لأغراض التصميم",
-    },
+  const dictionary = window.MAWJOOD_TRANSLATIONS || {};
+  const keyFallback = {
+    'nav.home': 'Home', 'nav.search': 'Search', 'nav.medicine': 'Medicine',
+    'nav.pharmacy': 'Pharmacy', 'nav.forPharmacies': 'For pharmacies',
+    'nav.dashboard': 'Dashboard', 'nav.about': 'About', 'nav.login': 'Pharmacy login',
+    'footer.tagline': 'Find the pharmacy that has your medicine, before you go.',
+    'footer.product': 'Product', 'footer.company': 'Company',
+    'footer.searchMedicines': 'Search medicines',
+    'footer.dashboardDemo': 'Dashboard demo',
+    'footer.aboutTrust': 'About and trust', 'footer.privacy': 'Privacy',
+    'footer.contact': 'Contact',
+    'footer.notice': 'Availability is reported by pharmacies and may change. Please confirm with your pharmacist. Mawjood does not sell or dispense medicine.',
+    'footer.copyright': '© 2026 Mawjood · Sample content',
+    'footer.copyrightSuffix': 'for design purposes',
+    'a11y.skip': 'Skip to content', 'auth.logout': 'Log out'
   };
+  const originals = new WeakMap();
+  const lastWritten = new WeakMap();
+  const originalAttributes = new WeakMap();
+  const attributes = ['placeholder', 'aria-label', 'title', 'alt'];
+  const SKIP = 'script, style, svg, symbol, defs, textarea, option[data-no-translate], [data-no-translate]';
+  let language = 'en';
+  try { language = localStorage.getItem('mawjood:language') === 'ar' ? 'ar' : 'en'; }
+  catch { /* Use English if local storage is blocked. */ }
 
-  // Read the saved language safely; localStorage may be unavailable in some modes.
-  function getSavedLanguage() {
-    try {
-      var saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved === "ar" || saved === "en" ? saved : DEFAULT_LANGUAGE;
-    } catch (error) {
-      return DEFAULT_LANGUAGE;
-    }
+  function translate(text, lang = language) {
+    return lang === 'ar' && Object.hasOwn(dictionary, text) ? dictionary[text] : text;
   }
 
-  // Translate text and selected accessible attributes without using HTML injection.
-  function applyTranslations(language) {
-    var dictionary = translations[language] || translations[DEFAULT_LANGUAGE];
-    document.documentElement.lang = language;
-    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
-    document.documentElement.classList.toggle("is-arabic", language === "ar");
+  function applyText(node, lang) {
+    const current = node.nodeValue;
+    if (lastWritten.has(node) && current !== lastWritten.get(node)) {
+      originals.set(node, current); // A page script changed this text since translation.
+    }
+    if (!originals.has(node)) originals.set(node, current);
+    const initial = originals.get(node);
+    const trimmed = initial.trim();
+    if (!trimmed || !/[A-Za-z]/.test(trimmed)) return;
+    const parentKey = node.parentElement?.getAttribute('data-i18n');
+    const base = parentKey && keyFallback[parentKey] || trimmed;
+    const output = translate(base, lang);
+    const leading = initial.match(/^\s*/)?.[0] || '';
+    const trailing = initial.match(/\s*$/)?.[0] || '';
+    const next = leading + output + trailing;
+    lastWritten.set(node, next);
+    if (current !== next) node.nodeValue = next;
+  }
 
-    document.querySelectorAll("[data-i18n]").forEach(function (element) {
-      var key = element.getAttribute("data-i18n");
-      if (Object.prototype.hasOwnProperty.call(dictionary, key)) {
-        element.textContent = dictionary[key];
+  function applyAttributes(element, lang) {
+    if (!originalAttributes.has(element)) {
+      const values = {};
+      for (const name of attributes) {
+        if (element.hasAttribute(name)) values[name] = element.getAttribute(name);
       }
-    });
-
-    // Translate placeholders, labels and other useful accessibility attributes.
-    ["placeholder", "aria-label", "title", "alt"].forEach(function (attribute) {
-      var selector = "[data-i18n-" + attribute + "]";
-      document.querySelectorAll(selector).forEach(function (element) {
-        var key = element.getAttribute("data-i18n-" + attribute);
-        if (Object.prototype.hasOwnProperty.call(dictionary, key)) {
-          element.setAttribute(attribute, dictionary[key]);
-        }
-      });
-    });
-
-    // Update language buttons so assistive technology can identify the action.
-    document.querySelectorAll("[data-lang-toggle]").forEach(function (button) {
-      var nextLanguage = language === "ar" ? "English" : "العربية";
-      button.setAttribute(
-        "aria-label",
-        language === "ar"
-          ? "Switch language to English"
-          : "تغيير اللغة إلى العربية",
-      );
-      button.setAttribute("title", nextLanguage);
-      var label = button.querySelector(".lang-toggle__label");
-      if (label)
-        label.textContent = language === "ar" ? "عربي | EN" : "EN | عربي";
-    });
-
-    // Let page-specific scripts react to a language change if needed.
-    document.dispatchEvent(
-      new CustomEvent("mawjood:languagechange", {
-        detail: {
-          language: language,
-          direction: language === "ar" ? "rtl" : "ltr",
-        },
-      }),
-    );
-  }
-
-  function setLanguage(language) {
-    if (language !== "ar" && language !== "en") return;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, language);
-    } catch (error) {
-      // The language still changes for the current page if storage is blocked.
+      originalAttributes.set(element, values);
     }
-    applyTranslations(language);
+    for (const [name, original] of Object.entries(originalAttributes.get(element))) {
+      const expected = translate(original, lang);
+      if (element.getAttribute(name) !== expected) element.setAttribute(name, expected);
+    }
   }
 
-  // Expose a small API for other scripts and tests.
-  window.MawjoodI18n = {
-    setLanguage: setLanguage,
-    getLanguage: getSavedLanguage,
-    translate: function (key) {
-      var language = getSavedLanguage();
-      return (
-        (translations[language] && translations[language][key]) ||
-        translations.en[key] ||
-        key
-      );
-    },
-    dictionaries: translations,
-  };
+  function applyElement(element, lang) {
+    if (element.matches(SKIP)) return;
+    applyAttributes(element, lang);
 
-  // Wire every language toggle and apply the user's saved preference on startup.
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("[data-lang-toggle]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        setLanguage(getSavedLanguage() === "ar" ? "en" : "ar");
-      });
+    if (element.hasAttribute('data-en') && element.hasAttribute('data-ar')) {
+      const value = element.getAttribute('data-' + lang);
+      if (element.tagName === 'H1' && value.includes('<em>')) {
+        const current = element.innerHTML;
+        if (current !== value) element.innerHTML = value;
+      } else if (element.textContent !== value) element.textContent = value;
+      return;
+    }
+    for (const node of element.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE) applyText(node, lang);
+      else if (node.nodeType === Node.ELEMENT_NODE) applyElement(node, lang);
+    }
+  }
+
+  function applyLanguage(next, { persist = true } = {}) {
+    language = next === 'ar' ? 'ar' : 'en';
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+    applyElement(document.body, language);
+    document.querySelectorAll('[data-lang-toggle]').forEach(button => {
+      const label = button.querySelector('.lang-toggle__label');
+      if (label) label.textContent = language === 'ar' ? 'English' : 'عربي';
+      button.setAttribute('aria-label', language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية');
     });
-    applyTranslations(getSavedLanguage());
+    if (persist) {
+      try { localStorage.setItem('mawjood:language', language); }
+      catch { /* Preference remains active until next navigation. */ }
+    }
+    document.dispatchEvent(new CustomEvent('mawjood:languagechange', {
+      detail: { language, direction: document.documentElement.dir }
+    }));
+  }
+
+  document.querySelectorAll('[data-lang-toggle]').forEach(button => {
+    button.addEventListener('click', () => applyLanguage(language === 'ar' ? 'en' : 'ar'));
   });
+  // Scripts are loaded with defer; this file runs after parsing the document.
+  applyLanguage(language, { persist: false });
+
+  const observer = new MutationObserver(mutations => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'characterData') {
+        const node = mutation.target;
+        if (node.parentElement?.closest(SKIP)) continue;
+        if (node.nodeValue !== lastWritten.get(node)) applyText(node, language);
+        continue;
+      }
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType === Node.TEXT_NODE && !node.parentElement?.closest(SKIP)) applyText(node, language);
+        else if (node.nodeType === Node.ELEMENT_NODE) applyElement(node, language);
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+
+  window.MawjoodLanguage = {
+    set: applyLanguage,
+    get: () => language,
+    translate: text => translate(text),
+    refresh: () => applyElement(document.body, language)
+  };
 })();

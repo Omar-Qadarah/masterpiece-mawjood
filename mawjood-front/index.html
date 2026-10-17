@@ -1,370 +1,283 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+
+<html dir="ltr" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mawjood · Find the pharmacy that has your medicine</title>
-  <meta name="description" content="Check which nearby pharmacies have your medicine in stock, then send a reservation request on WhatsApp.">
-  <meta name="theme-color" content="#087F8C">
-  <meta name="color-scheme" content="light">
-
-  <meta property="og:title" content="Mawjood · Find the pharmacy that has your medicine">
-  <meta property="og:description" content="Check which nearby pharmacies have your medicine in stock, then send a reservation request on WhatsApp.">
-  <meta property="og:type" content="website">
-
-  <link rel="icon" href="assets/brand/favicon-32.png" type="image/svg+xml">
-  <link rel="icon" href="assets/brand/favicon-48.png" sizes="48x48">
-  <link rel="apple-touch-icon" href="assets/brand/favicon-180.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap">
-
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/rtl.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Mawjood · Find the pharmacy that has your medicine</title>
+<meta content="Check which nearby pharmacies have your medicine in stock, then send a reservation request on WhatsApp." name="description"/>
+<meta content="#087F8C" name="theme-color"/>
+<meta content="light" name="color-scheme"/>
+<meta content="Mawjood · Find the pharmacy that has your medicine" property="og:title"/>
+<meta content="Check which nearby pharmacies have your medicine in stock, then send a reservation request on WhatsApp." property="og:description"/>
+<meta content="website" property="og:type"/>
+<link href="assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/brand/favicon.ico" rel="icon" sizes="48x48"/>
+<link href="assets/brand/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Arabic:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
+<link href="css/rtl.css" rel="stylesheet"/>
+<link href="css/improvements.css" rel="stylesheet"/></head>
 <body class="page-home">
-
-  <!-- Icon sprite (24px grid, stroke icons) and logo tile -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
-      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
-      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></symbol>
-      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
-      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
-      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
-      <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></symbol>
-      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
-      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
-      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-
-      <symbol id="logo-tile" viewBox="0 0 816 816">
-        <rect width="816" height="816" rx="196" fill="#087F8C"/>
-        <g transform="translate(408 402) scale(1.12) translate(-408 -402)">
-          <path d="M409 617 L262.3 420.4 A183 183 0 1 1 555.7 420.4 Z" fill="#FFFFFF"/>
-          <circle cx="409" cy="314" r="132" fill="#087F8C"/>
-          <g transform="rotate(36 382 302)">
-            <rect x="337" y="187" width="90" height="230" rx="45" fill="#FFFFFF"/>
-            <rect x="337" y="299" width="90" height="6" fill="#087F8C"/>
-          </g>
-          <circle cx="474" cy="346" r="42" fill="#FFFFFF"/>
-          <path d="M433 359 L515 337" stroke="#087F8C" stroke-width="6"/>
-          <ellipse cx="410" cy="656" rx="120" ry="20" fill="#FFFFFF"/>
-        </g>
-      </symbol>
-    </defs>
-  </svg>
-
-  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
-
-  <!-- ===================== Header ===================== -->
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="index.html" aria-label="Mawjood, home">
-        <svg class="brand__tile" aria-hidden="true"><use href="#logo-tile"/></svg>
-        <span class="brand__name" data-i18n="brand.name">Mawjood</span>
-      </a>
-
-      <nav class="site-nav" id="site-nav" aria-label="Main">
-        <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="search.html" data-i18n="nav.search">Search</a></li>
-          <li><a class="site-nav__link" href="for-pharmacies.html" data-i18n="nav.forPharmacies">For pharmacies</a></li>
-          <li><a class="site-nav__link" href="about.html" data-i18n="nav.about">About</a></li>
-          <li class="site-nav__login"><a class="btn btn--secondary btn--sm" href="login.html" data-i18n="nav.login">Pharmacy login</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a class="btn btn--secondary btn--sm btn-login" href="login.html" data-i18n="nav.login">Pharmacy login</a>
-        <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch language / تغيير اللغة">
-          <svg class="icon icon--20" aria-hidden="true"><use href="#i-globe"/></svg>
-          <span class="lang-toggle__label" dir="ltr">EN | عربي</span>
-        </button>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-i18n-aria-label="nav.menu">
-          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-
-    <!-- ===================== Hero ===================== -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero__inner">
-
-        <div class="hero__copy">
-          <p class="pill">
-            <span class="pill__dot" aria-hidden="true"></span>
-            <span data-i18n="hero.badge">Live stock · Amman &amp; Zarqa</span>
-          </p>
-
-          <h1 class="hero__title" id="hero-title">
-            <span data-i18n="hero.title1">Find the pharmacy</span>
-            <span class="hero__title-accent" data-i18n="hero.title2">that has your medicine.</span>
-          </h1>
-
-          <p class="hero__lede">
-            <span class="hero__lede-line" data-i18n="hero.lede1">Check which nearby pharmacies have your medicine in stock,</span>
-            <span class="hero__lede-line only-desktop" data-i18n="hero.lede2">then send a reservation request on WhatsApp.</span>
-            <span class="hero__lede-line only-mobile" data-i18n="hero.lede2Short">then request on WhatsApp.</span>
-          </p>
-
-          <form class="search-form" id="search-form" action="search.html" method="get" role="search">
-            <div class="search-field">
-              <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-              <label class="sr-only" for="q" data-i18n="search.label">Search for a medicine</label>
-              <div class="search-field__control">
-                <input class="search-field__input" id="q" name="q" type="search" autocomplete="off" placeholder=" ">
-                <span class="search-field__hint" aria-hidden="true">
-                  <span class="hint-long" data-i18n="search.placeholder">Search a medicine, e.g. Panadol Extra</span>
-                  <span class="hint-short" data-i18n="search.placeholderShort">Search a medicine…</span>
-                </span>
-              </div>
-            </div>
-            <button class="btn btn--primary btn--lg" type="submit" data-i18n="search.submit">Search</button>
-
-          </form>
-
-          <div class="hero__tools">
-            <button class="chip" type="button" data-action="locate">
-              <svg class="icon icon--18" aria-hidden="true"><use href="#i-target"/></svg>
-              <span data-i18n="search.useLocation">Use my location</span>
-            </button>
-            <label class="chip-select">
-              <span class="sr-only" data-i18n="search.cityLabel">City</span>
-              <select name="city" form="search-form" id="city" data-city-select>
-                <option value="amman" data-i18n="city.amman">Amman</option>
-                <option value="zarqa" data-i18n="city.zarqa">Zarqa</option>
-              </select>
-              <svg class="icon icon--16" aria-hidden="true"><use href="#i-chevd"/></svg>
-            </label>
-          </div>
-
-          <div class="hero__popular">
-            <span class="popular-label" id="popular-label"><span data-i18n="search.popular">Popular</span><span class="popular-colon" aria-hidden="true">:</span></span>
-            <ul class="chip-list" aria-labelledby="popular-label">
-              <li><a class="chip chip--sm" href="search.html?q=Panadol" data-i18n="popular.panadol">Panadol</a></li>
-              <li><a class="chip chip--sm" href="search.html?q=Augmentin" data-i18n="popular.augmentin">Augmentin</a></li>
-              <li><a class="chip chip--sm" href="search.html?q=Ventolin" data-i18n="popular.ventolin">Ventolin</a></li>
-              <li><a class="chip chip--sm" href="search.html?q=Insulin" data-i18n="popular.insulin">Insulin</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Decorative map with two sample cards (desktop only) -->
-        <div class="hero__map" aria-hidden="true">
-          <svg class="hero__map-svg" viewBox="790 112 570 480" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <rect x="824.2" y="150.4" width="114" height="76.8" rx="10" fill="#C5E7DF"/>
-            <rect x="1200.4" y="476.8" width="125.4" height="76.8" rx="10" fill="#C5E7DF"/>
-            <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
-              <g stroke-width="9">
-                <path d="M790 246.4 L989.5 275.2 L1189 217.6 L1360 256"/>
-                <path d="M790 457.6 L961 428.8 L1143.4 486.4 L1360 448"/>
-                <path d="M915.4 112 L949.6 304 L904 448 L961 592"/>
-                <path d="M1154.8 112 L1132 280 L1189 448 L1166.2 592"/>
-                <path d="M790 352 L1075 352 L1360 332.8"/>
-              </g>
-              <g stroke-width="4">
-                <path d="M820 264.4 L1019.5 293.2 L1219 235.6 L1356 274"/>
-                <path d="M820 475.6 L991 446.8 L1173.4 504.4 L1356 466"/>
-                <path d="M945.4 130 L979.6 322 L934 466 L991 588"/>
-              </g>
-            </g>
-            <!-- You are here -->
-            <circle cx="1075" cy="352" r="18" fill="#087F8C" opacity="0.18"/>
-            <circle cx="1075" cy="352" r="7" fill="#087F8C" stroke="#FFFFFF" stroke-width="3"/>
-            <!-- Pharmacy markers: in stock / low / in stock / unconfirmed -->
-            <g stroke="#FFFFFF" stroke-width="3">
-              <circle cx="961" cy="256" r="14" fill="#0A7A4A"/>
-              <circle cx="1143.4" cy="217.6" r="14" fill="#9A5A00"/>
-              <circle cx="1200.4" cy="409.6" r="14" fill="#0A7A4A"/>
-              <circle cx="1018" cy="467.2" r="14" fill="#4F5E6C"/>
-            </g>
-            <g fill="#FFFFFF">
-              <circle cx="961" cy="256" r="4.5"/>
-              <circle cx="1143.4" cy="217.6" r="4.5"/>
-              <circle cx="1200.4" cy="409.6" r="4.5"/>
-              <circle cx="1018" cy="467.2" r="4.5"/>
-            </g>
-          </svg>
-
-          <div class="map-chip">
-            <svg class="icon icon--22" aria-hidden="true"><use href="#i-search"/></svg>
-            <div>
-              <p class="map-chip__title" data-i18n="map.medicine">Panadol Extra 500 mg</p>
-              <p class="map-chip__sub" data-i18n="map.nearby">9 pharmacies nearby</p>
-            </div>
-          </div>
-
-          <article class="mini-card">
-            <div class="mini-card__body">
-              <h3 class="mini-card__title" data-i18n="sample.pharmacy">Al-Shifa Pharmacy</h3>
-              <p class="mini-card__meta" data-i18n="sample.location">Abdoun, Amman · 0.8 km</p>
-              <span class="badge badge--in" data-i18n="status.in">In stock</span>
-              <p class="mini-card__updated" data-i18n="sample.updated">Updated 12 min ago</p>
-            </div>
-          </article>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Preview card (compact screens only; the map card replaces it on desktop) -->
-    <section class="preview" aria-label="Example result" data-i18n-aria-label="sample.aria">
-      <div class="container">
-        <article class="mini-card">
-          <div class="mini-card__body">
-            <h3 class="mini-card__title" data-i18n="sample.pharmacy">Al-Shifa Pharmacy</h3>
-            <p class="mini-card__meta" data-i18n="sample.location">Abdoun, Amman · 0.8 km</p>
-            <span class="badge badge--in" data-i18n="status.in">In stock</span>
-            <p class="mini-card__updated" data-i18n="sample.updated">Updated 12 min ago</p>
-          </div>
-          <div class="mini-card__action">
-            <a class="btn btn--primary btn--sm" href="pharmacy.html" data-i18n="sample.request">Request</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===================== How it works ===================== -->
-    <section class="how" aria-labelledby="how-title">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-head__title" id="how-title" data-i18n="how.title">How it works</h2>
-          <p class="section-head__sub" data-i18n="how.sub">Three steps from “do you have it?” to “see you soon”.</p>
-        </div>
-
-        <ol class="steps">
-          <li class="step">
-            <span class="step__icon" aria-hidden="true"><svg class="icon"><use href="#i-search"/></svg></span>
-            <span class="step__num" aria-hidden="true">1</span>
-            <div class="step__body">
-              <h3 class="step__title" data-i18n="how.s1.title">Search</h3>
-              <p class="step__desc" data-i18n="how.s1.desc">Type the medicine name or scan its barcode.</p>
-            </div>
-          </li>
-          <li class="step">
-            <span class="step__icon" aria-hidden="true"><svg class="icon"><use href="#i-pin"/></svg></span>
-            <span class="step__num" aria-hidden="true">2</span>
-            <div class="step__body">
-              <h3 class="step__title" data-i18n="how.s2.title">See who has it</h3>
-              <p class="step__desc">
-                <span class="only-desktop" data-i18n="how.s2.desc">Compare nearby pharmacies by stock, distance and hours.</span>
-                <span class="only-mobile" data-i18n="how.s2.descShort">Compare nearby pharmacies by stock and distance.</span>
-              </p>
-            </div>
-          </li>
-          <li class="step">
-            <span class="step__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>
-            <span class="step__num" aria-hidden="true">3</span>
-            <div class="step__body">
-              <h3 class="step__title" data-i18n="how.s3.title">Request on WhatsApp</h3>
-              <p class="step__desc">
-                <span class="only-desktop" data-i18n="how.s3.desc">Send a reservation request. The pharmacist confirms.</span>
-                <span class="only-mobile" data-i18n="how.s3.descShort">The pharmacist confirms your request.</span>
-              </p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ===================== Trust strip ===================== -->
-    <section class="trust" aria-label="Why people trust Mawjood" data-i18n-aria-label="trust.aria">
-      <div class="container">
-        <ul class="trust__list">
-          <li class="trust__item">
-            <svg class="icon icon--30" aria-hidden="true"><use href="#i-shield"/></svg>
-            <span data-i18n="trust.licensed">Reported by licensed pharmacies</span>
-          </li>
-          <li class="trust__item">
-            <svg class="icon icon--30" aria-hidden="true"><use href="#i-lock"/></svg>
-            <span data-i18n="trust.noSale">We never sell medicine</span>
-          </li>
-          <li class="trust__item">
-            <svg class="icon icon--30" aria-hidden="true"><use href="#i-clock"/></svg>
-            <span data-i18n="trust.updated">Last-updated time on every result</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===================== Footer ===================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__top">
-        <div class="site-footer__brand">
-          <a class="brand" href="index.html" aria-label="Mawjood, home">
-            <svg class="brand__tile" aria-hidden="true"><use href="#logo-tile"/></svg>
-            <span class="brand__name" data-i18n="brand.name">Mawjood</span>
-          </a>
-          <p class="site-footer__tagline" data-i18n="footer.tagline">Find the pharmacy that has your medicine, before you go.</p>
-        </div>
-
-        <nav class="footer-col" aria-labelledby="footer-product">
-          <h2 class="footer-col__title" id="footer-product" data-i18n="footer.product">Product</h2>
-          <ul class="footer-col__list">
-            <li><a class="footer-col__link" href="search.html" data-i18n="footer.searchMedicines">Search medicines</a></li>
-            <li><a class="footer-col__link" href="for-pharmacies.html" data-i18n="nav.forPharmacies">For pharmacies</a></li>
-            <li><a class="footer-col__link" href="dashboard.html" data-i18n="footer.dashboardDemo">Dashboard demo</a></li>
-          </ul>
-        </nav>
-
-        <nav class="footer-col" aria-labelledby="footer-company">
-          <h2 class="footer-col__title" id="footer-company" data-i18n="footer.company">Company</h2>
-          <ul class="footer-col__list">
-            <li><a class="footer-col__link" href="about.html" data-i18n="footer.aboutTrust">About and trust</a></li>
-            <li><a class="footer-col__link" href="about.html#privacy" data-i18n="footer.privacy">Privacy</a></li>
-            <li><a class="footer-col__link" href="about.html#contact" data-i18n="footer.contact">Contact</a></li>
-          </ul>
-        </nav>
-
-        <aside class="notice" aria-label="Availability notice" data-i18n-aria-label="footer.noticeAria">
-          <svg class="icon icon--20" aria-hidden="true"><use href="#i-info"/></svg>
-          <p data-i18n="footer.notice">Availability is reported by pharmacies and may change. Please confirm with your pharmacist. Mawjood does not sell or dispense medicine.</p>
-        </aside>
-      </div>
-
-      <p class="site-footer__bottom">
-        <span data-i18n="footer.copyright">© 2026 Mawjood · Sample content</span><span class="only-desktop" data-i18n="footer.copyrightSuffix"> for design purposes</span>
-      </p>
-    </div>
-  </footer>
-
-  <!-- Mobile menu toggle (no dependencies) -->
-  <script>
-    (function () {
-      var header = document.querySelector('.site-header');
-      var btn = document.querySelector('.nav-toggle');
-      if (!header || !btn) return;
-      function setOpen(open) {
-        header.classList.toggle('is-nav-open', open);
-        btn.setAttribute('aria-expanded', String(open));
-      }
-      btn.addEventListener('click', function () {
-        setOpen(!header.classList.contains('is-nav-open'));
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && header.classList.contains('is-nav-open')) {
-          setOpen(false);
-          btn.focus();
-        }
-      });
-      window.matchMedia('(min-width: 900px)').addEventListener('change', function (e) {
-        if (e.matches) setOpen(false);
-      });
-    })();
-  </script>
-
-  <script src="js/data.js" defer></script>
-  <script src="js/storage.js" defer></script>
-  <script src="js/i18n.js" defer></script>
-  <script src="js/search.js" defer></script>
-</body>
+<!-- Icon sprite (24px grid, stroke icons) and logo tile -->
+<svg aria-hidden="true" focusable="false" height="0" style="position:absolute" width="0">
+<defs>
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></symbol>
+<symbol id="i-pin" viewbox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+<symbol id="i-chat" viewbox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 10h8M8 13h5"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></symbol>
+<symbol id="i-lock" viewbox="0 0 24 24"><rect height="9" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="i-target" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="12" r="8"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></symbol>
+<symbol id="i-chevd" viewbox="0 0 24 24"><path d="M5 9l7 7 7-7"></path></symbol>
+<symbol id="i-info" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></symbol>
+<symbol id="i-globe" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path></symbol>
+<symbol id="i-menu" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+<symbol id="logo-tile" viewbox="0 0 816 816">
+<rect fill="#087F8C" height="816" rx="196" width="816"></rect>
+<g transform="translate(408 402) scale(1.12) translate(-408 -402)">
+<path d="M409 617 L262.3 420.4 A183 183 0 1 1 555.7 420.4 Z" fill="#FFFFFF"></path>
+<circle cx="409" cy="314" fill="#087F8C" r="132"></circle>
+<g transform="rotate(36 382 302)">
+<rect fill="#FFFFFF" height="230" rx="45" width="90" x="337" y="187"></rect>
+<rect fill="#087F8C" height="6" width="90" x="337" y="299"></rect>
+</g>
+<circle cx="474" cy="346" fill="#FFFFFF" r="42"></circle>
+<path d="M433 359 L515 337" stroke="#087F8C" stroke-width="6"></path>
+<ellipse cx="410" cy="656" fill="#FFFFFF" rx="120" ry="20"></ellipse>
+</g>
+</symbol>
+</defs>
+</svg>
+<a class="skip-link" data-i18n="a11y.skip" href="#main">Skip to content</a>
+<!-- ===================== Header ===================== -->
+<header class="site-header"><div class="container site-header__inner"><a aria-label="Mawjood home" class="brand" href="index.html"><img alt="Mawjood" class="brand__lockup" src="assets/brand/lockup-on-white.svg"/></a><nav aria-label="Main navigation" class="site-nav" id="site-nav"><ul class="site-nav__list"><li><a aria-current="page" class="site-nav__link" data-i18n="nav.home" href="index.html">Home</a></li><li><a class="site-nav__link" data-i18n="nav.search" href="search.html">Search</a></li><li><a class="site-nav__link" data-i18n="nav.medicine" href="medicine.html">Medicine</a></li><li><a class="site-nav__link" data-i18n="nav.pharmacy" href="pharmacy.html">Pharmacy</a></li><li><a class="site-nav__link" data-i18n="nav.forPharmacies" href="for-pharmacies.html">For pharmacies</a></li><li><a class="site-nav__link" data-i18n="nav.about" href="about.html">About</a></li></ul></nav><div class="header-actions"><button aria-label="Switch language" class="lang-toggle" data-lang-toggle="" type="button"><span class="lang-toggle__label" dir="ltr">عربي</span></button><div class="profile-control"><button aria-controls="profile-menu" aria-expanded="false" aria-haspopup="true" aria-label="Account menu" class="profile-trigger" id="profile-trigger" type="button"><img alt="" height="40" src="assets/brand/profile-avatar.svg" width="40"/></button><div class="profile-menu" hidden="" id="profile-menu"><div class="profile-menu__head"><span class="profile-menu__avatar"><img alt="" height="36" src="assets/brand/profile-avatar.svg" width="36"/></span><span><strong id="account-name">My account</strong><small id="account-email">Pharmacy portal</small></span></div><a data-i18n="nav.dashboard" href="dashboard.html">Dashboard</a><a data-i18n="nav.login" href="login.html">Pharmacy login</a><button class="profile-menu__logout" data-i18n="auth.logout" hidden="" id="logout-button" type="button">Log out</button></div></div><button aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" class="nav-toggle" type="button"><svg aria-hidden="true" class="icon" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></button></div></div></header>
+<main id="main">
+<!-- ===================== Hero ===================== -->
+<section aria-labelledby="hero-title" class="hero">
+<div class="container hero__inner">
+<div class="hero__copy">
+<p class="pill">
+<span aria-hidden="true" class="pill__dot"></span>
+<span data-i18n="hero.badge">Sample listings · Amman</span>
+</p>
+<h1 class="hero__title" id="hero-title">
+<span data-i18n="hero.title1">Find the pharmacy</span>
+<span class="hero__title-accent" data-i18n="hero.title2">that has your medicine.</span>
+</h1>
+<p class="hero__lede">
+<span class="hero__lede-line" data-i18n="hero.lede1">Check which nearby pharmacies have your medicine in stock,</span>
+<span class="hero__lede-line only-desktop" data-i18n="hero.lede2">then send a reservation request on WhatsApp.</span>
+<span class="hero__lede-line only-mobile" data-i18n="hero.lede2Short">then request on WhatsApp.</span>
+</p>
+<form action="search.html" class="search-form" id="search-form" method="get" role="search">
+<div class="search-field">
+<svg aria-hidden="true" class="icon"><use href="#i-search"></use></svg>
+<label class="sr-only" data-i18n="search.label" for="q">Search for a medicine</label>
+<div class="search-field__control">
+<input autocomplete="off" class="search-field__input" id="q" name="q" placeholder=" " type="search"/>
+<span aria-hidden="true" class="search-field__hint">
+<span class="hint-long" data-i18n="search.placeholder">Search a medicine, e.g. Panadol Extra</span>
+<span class="hint-short" data-i18n="search.placeholderShort">Search a medicine…</span>
+</span>
+</div>
+</div>
+<button class="btn btn--primary btn--lg" data-i18n="search.submit" type="submit">Search</button>
+</form>
+<div class="hero__tools">
+<button class="chip" data-action="locate" type="button">
+<svg aria-hidden="true" class="icon icon--18"><use href="#i-target"></use></svg>
+<span data-i18n="search.useLocation">Use my location</span>
+</button>
+<label class="chip-select">
+<span class="sr-only" data-i18n="search.cityLabel">City</span>
+<select data-city-select="" form="search-form" id="city" name="city">
+<option data-i18n="city.amman" value="amman">Amman</option>
+<option data-i18n="city.zarqa" value="zarqa">Zarqa</option>
+</select>
+<svg aria-hidden="true" class="icon icon--16"><use href="#i-chevd"></use></svg>
+</label>
+</div>
+<div class="hero__popular">
+<span class="popular-label" id="popular-label"><span data-i18n="search.popular">Popular</span><span aria-hidden="true" class="popular-colon">:</span></span>
+<ul aria-labelledby="popular-label" class="chip-list">
+<li><a class="chip chip--sm" data-i18n="popular.panadol" href="search.html?q=Panadol">Panadol</a></li>
+<li><a class="chip chip--sm" data-i18n="popular.augmentin" href="search.html?q=Augmentin">Augmentin</a></li>
+<li><a class="chip chip--sm" data-i18n="popular.ventolin" href="search.html?q=Ventolin">Ventolin</a></li>
+<li><a class="chip chip--sm" data-i18n="popular.insulin" href="search.html?q=Insulin">Insulin</a></li>
+</ul>
+</div>
+</div>
+<!-- Decorative map with two sample cards (desktop only) -->
+<div aria-hidden="true" class="hero__map">
+<svg class="hero__map-svg" focusable="false" preserveaspectratio="xMidYMid slice" viewbox="790 112 570 480">
+<rect fill="#C5E7DF" height="76.8" rx="10" width="114" x="824.2" y="150.4"></rect>
+<rect fill="#C5E7DF" height="76.8" rx="10" width="125.4" x="1200.4" y="476.8"></rect>
+<g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+<g stroke-width="9">
+<path d="M790 246.4 L989.5 275.2 L1189 217.6 L1360 256"></path>
+<path d="M790 457.6 L961 428.8 L1143.4 486.4 L1360 448"></path>
+<path d="M915.4 112 L949.6 304 L904 448 L961 592"></path>
+<path d="M1154.8 112 L1132 280 L1189 448 L1166.2 592"></path>
+<path d="M790 352 L1075 352 L1360 332.8"></path>
+</g>
+<g stroke-width="4">
+<path d="M820 264.4 L1019.5 293.2 L1219 235.6 L1356 274"></path>
+<path d="M820 475.6 L991 446.8 L1173.4 504.4 L1356 466"></path>
+<path d="M945.4 130 L979.6 322 L934 466 L991 588"></path>
+</g>
+</g>
+<!-- You are here -->
+<circle cx="1075" cy="352" fill="#087F8C" opacity="0.18" r="18"></circle>
+<circle cx="1075" cy="352" fill="#087F8C" r="7" stroke="#FFFFFF" stroke-width="3"></circle>
+<!-- Pharmacy markers: in stock / low / in stock / unconfirmed -->
+<g stroke="#FFFFFF" stroke-width="3">
+<circle cx="961" cy="256" fill="#0A7A4A" r="14"></circle>
+<circle cx="1143.4" cy="217.6" fill="#9A5A00" r="14"></circle>
+<circle cx="1200.4" cy="409.6" fill="#0A7A4A" r="14"></circle>
+<circle cx="1018" cy="467.2" fill="#4F5E6C" r="14"></circle>
+</g>
+<g fill="#FFFFFF">
+<circle cx="961" cy="256" r="4.5"></circle>
+<circle cx="1143.4" cy="217.6" r="4.5"></circle>
+<circle cx="1200.4" cy="409.6" r="4.5"></circle>
+<circle cx="1018" cy="467.2" r="4.5"></circle>
+</g>
+</svg>
+<div class="map-chip">
+<svg aria-hidden="true" class="icon icon--22"><use href="#i-search"></use></svg>
+<div>
+<p class="map-chip__title" data-i18n="map.medicine">Panadol Extra 500 mg</p>
+<p class="map-chip__sub" data-i18n="map.nearby">Example pharmacy result</p>
+</div>
+</div>
+<article class="mini-card">
+<div class="mini-card__body">
+<h3 class="mini-card__title" data-i18n="sample.pharmacy">Al-Shifa Pharmacy</h3>
+<p class="mini-card__meta" data-i18n="sample.location">Abdoun, Amman · 0.8 km</p>
+<span class="badge badge--in" data-i18n="status.in">In stock</span>
+<p class="mini-card__updated" data-i18n="sample.updated">Updated 12 min ago</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Preview card (compact screens only; the map card replaces it on desktop) -->
+<section aria-label="Example result" class="preview" data-i18n-aria-label="sample.aria">
+<div class="container">
+<article class="mini-card">
+<div class="mini-card__body">
+<h3 class="mini-card__title" data-i18n="sample.pharmacy">Al-Shifa Pharmacy</h3>
+<p class="mini-card__meta" data-i18n="sample.location">Abdoun, Amman · 0.8 km</p>
+<span class="badge badge--in" data-i18n="status.in">In stock</span>
+<p class="mini-card__updated" data-i18n="sample.updated">Updated 12 min ago</p>
+</div>
+<div class="mini-card__action">
+<a class="btn btn--primary btn--sm" data-i18n="sample.request" href="pharmacy.html">Request</a>
+</div>
+</article>
+</div>
+</section>
+<!-- ===================== How it works ===================== -->
+<section aria-labelledby="how-title" class="how">
+<div class="container">
+<div class="section-head">
+<h2 class="section-head__title" data-i18n="how.title" id="how-title">How it works</h2>
+<p class="section-head__sub" data-i18n="how.sub">Three steps from “do you have it?” to “see you soon”.</p>
+</div>
+<ol class="steps">
+<li class="step">
+<span aria-hidden="true" class="step__icon"><svg class="icon"><use href="#i-search"></use></svg></span>
+<span aria-hidden="true" class="step__num">1</span>
+<div class="step__body">
+<h3 class="step__title" data-i18n="how.s1.title">Search</h3>
+<p class="step__desc" data-i18n="how.s1.desc">Type the medicine name or scan its barcode.</p>
+</div>
+</li>
+<li class="step">
+<span aria-hidden="true" class="step__icon"><svg class="icon"><use href="#i-pin"></use></svg></span>
+<span aria-hidden="true" class="step__num">2</span>
+<div class="step__body">
+<h3 class="step__title" data-i18n="how.s2.title">See who has it</h3>
+<p class="step__desc">
+<span class="only-desktop" data-i18n="how.s2.desc">Compare nearby pharmacies by stock, distance and hours.</span>
+<span class="only-mobile" data-i18n="how.s2.descShort">Compare nearby pharmacies by stock and distance.</span>
+</p>
+</div>
+</li>
+<li class="step">
+<span aria-hidden="true" class="step__icon"><svg class="icon"><use href="#i-chat"></use></svg></span>
+<span aria-hidden="true" class="step__num">3</span>
+<div class="step__body">
+<h3 class="step__title" data-i18n="how.s3.title">Request on WhatsApp</h3>
+<p class="step__desc">
+<span class="only-desktop" data-i18n="how.s3.desc">Send a reservation request. The pharmacist confirms.</span>
+<span class="only-mobile" data-i18n="how.s3.descShort">The pharmacist confirms your request.</span>
+</p>
+</div>
+</li>
+</ol>
+</div>
+</section>
+<!-- ===================== Trust strip ===================== -->
+<section aria-label="Why people trust Mawjood" class="trust" data-i18n-aria-label="trust.aria">
+<div class="container">
+<ul class="trust__list">
+<li class="trust__item">
+<svg aria-hidden="true" class="icon icon--30"><use href="#i-shield"></use></svg>
+<span data-i18n="trust.licensed">Reported by licensed pharmacies</span>
+</li>
+<li class="trust__item">
+<svg aria-hidden="true" class="icon icon--30"><use href="#i-lock"></use></svg>
+<span data-i18n="trust.noSale">We never sell medicine</span>
+</li>
+<li class="trust__item">
+<svg aria-hidden="true" class="icon icon--30"><use href="#i-clock"></use></svg>
+<span data-i18n="trust.updated">Last-updated time on every result</span>
+</li>
+</ul>
+</div>
+</section>
+</main>
+<!-- ===================== Footer ===================== -->
+<footer class="site-footer">
+<div class="container">
+<div class="site-footer__top">
+<div class="site-footer__brand">
+<a aria-label="Mawjood, home" class="brand" href="index.html">
+<img alt="Mawjood" class="brand__lockup" src="assets/brand/lockup-on-navy.svg"/>
+</a>
+<p class="site-footer__tagline" data-i18n="footer.tagline">Find the pharmacy that has your medicine, before you go.</p>
+</div>
+<nav aria-labelledby="footer-product" class="footer-col">
+<h2 class="footer-col__title" data-i18n="footer.product" id="footer-product">Product</h2>
+<ul class="footer-col__list">
+<li><a class="footer-col__link" data-i18n="footer.searchMedicines" href="search.html">Search medicines</a></li>
+<li><a class="footer-col__link" data-i18n="nav.forPharmacies" href="for-pharmacies.html">For pharmacies</a></li>
+<li><a class="footer-col__link" data-i18n="footer.dashboardDemo" href="dashboard.html">Dashboard demo</a></li>
+</ul>
+</nav>
+<nav aria-labelledby="footer-company" class="footer-col">
+<h2 class="footer-col__title" data-i18n="footer.company" id="footer-company">Company</h2>
+<ul class="footer-col__list">
+<li><a class="footer-col__link" data-i18n="footer.aboutTrust" href="about.html">About and trust</a></li>
+<li><a class="footer-col__link" data-i18n="footer.privacy" href="about.html#privacy">Privacy</a></li>
+<li><a class="footer-col__link" data-i18n="footer.contact" href="for-pharmacies.html#partner-contact">Contact</a></li>
+</ul>
+</nav>
+<aside aria-label="Availability notice" class="notice" data-i18n-aria-label="footer.noticeAria">
+<svg aria-hidden="true" class="icon icon--20"><use href="#i-info"></use></svg>
+<p data-i18n="footer.notice">Availability is reported by pharmacies and may change. Please confirm with your pharmacist. Mawjood does not sell or dispense medicine.</p>
+</aside>
+</div>
+<p class="site-footer__bottom">
+<span data-i18n="footer.copyright">© 2026 Mawjood · Sample content</span><span class="only-desktop" data-i18n="footer.copyrightSuffix"> for design purposes</span>
+</p>
+</div>
+</footer>
+<!-- Mobile menu toggle (no dependencies) -->
+<script defer="" src="js/translation-dictionary.js"></script><script defer="" src="js/i18n.js"></script><script defer="" src="js/auth.js"></script><script defer="" src="js/ui.js"></script><script defer="" src="js/data.js"></script><script defer="" src="js/storage.js"></script></body>
 </html>

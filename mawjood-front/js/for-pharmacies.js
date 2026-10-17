@@ -1,39 +1,31 @@
-/* Partner enquiry form. This demo creates a prefilled email draft; it does not submit to a server. */
-document.addEventListener("DOMContentLoaded", function () {
-  var form = document.querySelector("#partner-form");
+/** Pharmacy partnership form: opens a local email draft, with no fake recipient. */
+document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+  const form = document.querySelector('#partner-form');
   if (!form) return;
-  form.addEventListener("submit", function (event) {
+
+  form.addEventListener('submit', event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    var data = new FormData(form);
-    var name = String(data.get("name") || "");
-    var pharmacy = String(data.get("pharmacy") || "");
-    var phone = String(data.get("phone") || "");
-    var city = String(data.get("city") || "");
-    var email = String(data.get("email") || "");
-    var subject = "Mawjood pharmacy partnership enquiry - " + pharmacy;
-    var body =
-      "Hello Mawjood team,\\n\\nI am interested in learning about joining Mawjood.\\n\\nContact person: " +
-      name +
-      "\\nPharmacy: " +
-      pharmacy +
-      "\\nPhone: " +
-      phone +
-      "\\nCity: " +
-      city +
-      (email ? "\\nWork email: " + email : "") +
-      "\\n\\nPlease contact me about the next steps.\\n";
-    var feedback = document.querySelector("#partner-feedback");
+    const values = Object.fromEntries(new FormData(form).entries());
+    const subject = 'Mawjood pharmacy partnership enquiry - ' + (values.pharmacy || '');
+    const body = [
+      'Hello Mawjood team,', '',
+      'I would like to enquire about pharmacy onboarding.', '',
+      'Contact: ' + (values.name || ''),
+      'Pharmacy: ' + (values.pharmacy || ''),
+      'Phone: ' + (values.phone || ''),
+      'City: ' + (values.city || ''),
+      ...(values.email ? ['Email: ' + values.email] : []), '',
+      'Please contact me about the next steps.'
+    ].join('\n');
+    const feedback = document.querySelector('#partner-feedback');
     if (feedback) {
       feedback.hidden = false;
-      feedback.textContent =
-        "Your email draft is ready. Review it before sending. No details have been saved by this demo page.";
+      feedback.textContent = document.documentElement.lang === 'ar'
+        ? 'ستفتح مسودة بريد بدون عنوان مستلم. أضف البريد الرسمي بعد التأكد منه؛ لم تُرسل أي بيانات تلقائياً.'
+        : 'An email draft will open without a recipient. Enter a verified Mawjood contact address; nothing is sent automatically.';
     }
-    /* Replace with the verified partnership inbox before production. */
-    window.location.href =
-      "mailto:partnerships@mawjood.example?subject=" +
-      encodeURIComponent(subject) +
-      "&body=" +
-      encodeURIComponent(body);
+    window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   });
-});
+}, { once: true });

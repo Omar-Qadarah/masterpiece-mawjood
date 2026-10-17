@@ -1,226 +1,161 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+
+<html dir="ltr" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Search medicines · Mawjood</title>
-  <meta name="description" content="Compare nearby pharmacy medicine availability in Amman and Zarqa.">
-  <meta name="theme-color" content="#087F8C">
-  <link rel="icon" href="assets/brand/favicon-32.png" type="image/svg+xml">
-  <link rel="icon" href="assets/brand/favicon-48.png" sizes="48x48">
-  <link rel="apple-touch-icon" href="assets/brand/favicon-180.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/rtl.css">
-  <link rel="stylesheet" href="css/pages.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Search medicines · Mawjood</title>
+<meta content="Compare nearby pharmacy medicine availability in Amman and Zarqa." name="description"/>
+<meta content="#087F8C" name="theme-color"/>
+<link href="assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/brand/favicon.ico" rel="icon" sizes="48x48"/>
+<link href="assets/brand/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Arabic:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
+<link href="css/rtl.css" rel="stylesheet"/>
+<link href="css/pages.css" rel="stylesheet"/>
+<link href="css/improvements.css" rel="stylesheet"/></head>
 <body class="page-search">
-  <!-- Icon sprite (24px grid, stroke icons) and logo tile -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
-      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
-      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></symbol>
-      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
-      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
-      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
-      <symbol id="i-chevd" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></symbol>
-      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
-      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
-      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-
-      <symbol id="logo-tile" viewBox="0 0 816 816">
-        <rect width="816" height="816" rx="196" fill="#087F8C"/>
-        <g transform="translate(408 402) scale(1.12) translate(-408 -402)">
-          <path d="M409 617 L262.3 420.4 A183 183 0 1 1 555.7 420.4 Z" fill="#FFFFFF"/>
-          <circle cx="409" cy="314" r="132" fill="#087F8C"/>
-          <g transform="rotate(36 382 302)">
-            <rect x="337" y="187" width="90" height="230" rx="45" fill="#FFFFFF"/>
-            <rect x="337" y="299" width="90" height="6" fill="#087F8C"/>
-          </g>
-          <circle cx="474" cy="346" r="42" fill="#FFFFFF"/>
-          <path d="M433 359 L515 337" stroke="#087F8C" stroke-width="6"/>
-          <ellipse cx="410" cy="656" rx="120" ry="20" fill="#FFFFFF"/>
-        </g>
-      </symbol>
-    </defs>
-  </svg>
-
+<!-- Icon sprite (24px grid, stroke icons) and logo tile -->
+<svg aria-hidden="true" focusable="false" height="0" style="position:absolute" width="0">
+<defs>
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></symbol>
+<symbol id="i-pin" viewbox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+<symbol id="i-chat" viewbox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 10h8M8 13h5"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></symbol>
+<symbol id="i-lock" viewbox="0 0 24 24"><rect height="9" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="i-target" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="12" r="8"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></symbol>
+<symbol id="i-chevd" viewbox="0 0 24 24"><path d="M5 9l7 7 7-7"></path></symbol>
+<symbol id="i-info" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></symbol>
+<symbol id="i-globe" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path></symbol>
+<symbol id="i-menu" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+<symbol id="logo-tile" viewbox="0 0 816 816">
+<rect fill="#087F8C" height="816" rx="196" width="816"></rect>
+<g transform="translate(408 402) scale(1.12) translate(-408 -402)">
+<path d="M409 617 L262.3 420.4 A183 183 0 1 1 555.7 420.4 Z" fill="#FFFFFF"></path>
+<circle cx="409" cy="314" fill="#087F8C" r="132"></circle>
+<g transform="rotate(36 382 302)">
+<rect fill="#FFFFFF" height="230" rx="45" width="90" x="337" y="187"></rect>
+<rect fill="#087F8C" height="6" width="90" x="337" y="299"></rect>
+</g>
+<circle cx="474" cy="346" fill="#FFFFFF" r="42"></circle>
+<path d="M433 359 L515 337" stroke="#087F8C" stroke-width="6"></path>
+<ellipse cx="410" cy="656" fill="#FFFFFF" rx="120" ry="20"></ellipse>
+</g>
+</symbol>
+</defs>
+</svg>
 <a class="skip-link" href="#main">Skip to content</a>
-  <!-- ===================== Header ===================== -->
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="index.html" aria-label="Mawjood, home">
-        <svg class="brand__tile" aria-hidden="true"><use href="#logo-tile"/></svg>
-        <span class="brand__name" data-i18n="brand.name">Mawjood</span>
-      </a>
-
-      <nav class="site-nav" id="site-nav" aria-label="Main">
-        <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="search.html" data-i18n="nav.search">Search</a></li>
-          <li><a class="site-nav__link" href="for-pharmacies.html" data-i18n="nav.forPharmacies">For pharmacies</a></li>
-          <li><a class="site-nav__link" href="about.html" data-i18n="nav.about">About</a></li>
-          <li class="site-nav__login"><a class="btn btn--secondary btn--sm" href="login.html" data-i18n="nav.login">Pharmacy login</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a class="btn btn--secondary btn--sm btn-login" href="login.html" data-i18n="nav.login">Pharmacy login</a>
-        <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch language / تغيير اللغة">
-          <svg class="icon icon--20" aria-hidden="true"><use href="#i-globe"/></svg>
-          <span class="lang-toggle__label" dir="ltr">EN | عربي</span>
-        </button>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-i18n-aria-label="nav.menu">
-          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
-        </button>
-      </div>
-    </div>
-  </header>
+<!-- ===================== Header ===================== -->
+<header class="site-header"><div class="container site-header__inner"><a aria-label="Mawjood home" class="brand" href="index.html"><img alt="Mawjood" class="brand__lockup" src="assets/brand/lockup-on-white.svg"/></a><nav aria-label="Main navigation" class="site-nav" id="site-nav"><ul class="site-nav__list"><li><a class="site-nav__link" data-i18n="nav.home" href="index.html">Home</a></li><li><a aria-current="page" class="site-nav__link" data-i18n="nav.search" href="search.html">Search</a></li><li><a class="site-nav__link" data-i18n="nav.medicine" href="medicine.html">Medicine</a></li><li><a class="site-nav__link" data-i18n="nav.pharmacy" href="pharmacy.html">Pharmacy</a></li><li><a class="site-nav__link" data-i18n="nav.forPharmacies" href="for-pharmacies.html">For pharmacies</a></li><li><a class="site-nav__link" data-i18n="nav.about" href="about.html">About</a></li></ul></nav><div class="header-actions"><button aria-label="Switch language" class="lang-toggle" data-lang-toggle="" type="button"><span class="lang-toggle__label" dir="ltr">عربي</span></button><div class="profile-control"><button aria-controls="profile-menu" aria-expanded="false" aria-haspopup="true" aria-label="Account menu" class="profile-trigger" id="profile-trigger" type="button"><img alt="" height="40" src="assets/brand/profile-avatar.svg" width="40"/></button><div class="profile-menu" hidden="" id="profile-menu"><div class="profile-menu__head"><span class="profile-menu__avatar"><img alt="" height="36" src="assets/brand/profile-avatar.svg" width="36"/></span><span><strong id="account-name">My account</strong><small id="account-email">Pharmacy portal</small></span></div><a data-i18n="nav.dashboard" href="dashboard.html">Dashboard</a><a data-i18n="nav.login" href="login.html">Pharmacy login</a><button class="profile-menu__logout" data-i18n="auth.logout" hidden="" id="logout-button" type="button">Log out</button></div></div><button aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" class="nav-toggle" type="button"><svg aria-hidden="true" class="icon" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></button></div></div></header>
 <main id="main">
-
-  <section class="page-intro search-page">
-    <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">›</span><span>Search results</span></nav>
-      <div class="search-page__top">
-        <div>
-          <p class="eyebrow">MEDICINE SEARCH</p>
-          <h1 class="page-title">Find it before you go.</h1>
-          <p class="page-subtitle">Compare nearby pharmacies by availability, distance and opening hours.</p>
-        </div>
-        <form class="results-search" action="search.html" method="get" role="search">
-          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-          <label class="sr-only" for="results-q">Search for a medicine</label>
-          <input id="results-q" name="q" type="search" value="Panadol Extra 500 mg" placeholder="Medicine name, e.g. Panadol Extra">
-          <button class="btn btn--primary" type="submit">Search</button>
-        </form>
-      </div>
-
-      <div class="results-layout">
-        <aside class="filters card" aria-label="Search filters">
-          <div class="filters__head"><h2>Refine results</h2><button class="text-button" type="button" id="clear-filters">Clear all</button></div>
-          <label class="filter-label" for="city-filter">City</label>
-          <select id="city-filter" class="form-control"><option>Amman</option><option>Zarqa</option></select>
-          <label class="filter-check"><input type="checkbox" id="in-stock" checked> <span>In stock only</span></label>
-          <label class="filter-check"><input type="checkbox" id="open-now"> <span>Open now</span></label>
-          <div class="filter-divider"></div>
-          <label class="filter-label" for="distance-filter">Within <strong id="distance-value">5 km</strong></label>
-          <input id="distance-filter" type="range" min="1" max="20" value="5">
-          <div class="range-ends"><span>1 km</span><span>20 km</span></div>
-          <div class="filter-divider"></div>
-          <p class="filter-label">Sort by</p>
-          <label class="radio-row"><input type="radio" name="sort" value="distance" checked> Nearest</label>
-          <label class="radio-row"><input type="radio" name="sort" value="availability"> Availability</label>
-        </aside>
-
-        <section class="results-main" aria-labelledby="results-heading">
-          <div class="results-toolbar">
-            <div><h2 id="results-heading">12 pharmacies near Abdoun</h2><p>Sorted by distance · Updated by pharmacies</p></div>
-            <div class="view-toggle" role="group" aria-label="Results view">
-              <button type="button" class="view-toggle__button is-active" data-view="list" aria-pressed="true">List</button>
-              <button type="button" class="view-toggle__button" data-view="map" aria-pressed="false">Map</button>
-            </div>
-          </div>
-          <div class="notice-inline"><span class="notice-inline__icon">i</span><p><strong>Panadol Extra is low nearby.</strong> Paracetamol 500 mg (generic) is in stock at 9 pharmacies. Confirm any substitution with your pharmacist. <a href="medicine.html">View generic</a></p></div>
-          <div class="pharmacy-results" id="pharmacy-results">
-            <article class="pharmacy-card card" data-stock="in" data-open="yes" data-distance="0.8">
-              <div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Al-Shifa Pharmacy</a></h3><span class="badge badge--in">In stock</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"/></svg> Abdoun, Amman <span>·</span> 0.8 km</p><p class="pharmacy-card__updated">Updated 12 min ago <span>·</span> Open until 12:00 am</p></div>
-              <div class="pharmacy-card__actions"><a class="btn btn--primary btn--sm" href="pharmacy.html">Request reservation</a><a class="action-link" href="tel:+96260000001">Call</a><a class="action-link" href="https://maps.google.com/?q=Al-Shifa+Pharmacy+Amman" target="_blank" rel="noopener">Route</a></div>
-            </article>
-            <article class="pharmacy-card card" data-stock="low" data-open="yes" data-distance="1.4">
-              <div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Dar Al-Dawa Pharmacy</a></h3><span class="badge badge--low">Low stock</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"/></svg> Jabal Amman <span>·</span> 1.4 km</p><p class="pharmacy-card__updated">Updated 25 min ago <span>·</span> Open until 11:00 pm</p></div>
-              <div class="pharmacy-card__actions"><a class="btn btn--primary btn--sm" href="pharmacy.html">Request reservation</a><a class="action-link" href="tel:+96260000002">Call</a><a class="action-link" href="https://maps.google.com/?q=Dar+Al-Dawa+Pharmacy+Amman" target="_blank" rel="noopener">Route</a></div>
-            </article>
-            <article class="pharmacy-card card" data-stock="in" data-open="yes" data-distance="2.1">
-              <div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Al-Razi Pharmacy</a></h3><span class="badge badge--in">In stock</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"/></svg> Sweifieh, Amman <span>·</span> 2.1 km</p><p class="pharmacy-card__updated">Updated 1 h ago <span>·</span> Open 24 hours</p></div>
-              <div class="pharmacy-card__actions"><a class="btn btn--primary btn--sm" href="pharmacy.html">Request reservation</a><a class="action-link" href="tel:+96260000003">Call</a><a class="action-link" href="https://maps.google.com/?q=Al-Razi+Pharmacy+Amman" target="_blank" rel="noopener">Route</a></div>
-            </article>
-            <article class="pharmacy-card card" data-stock="unknown" data-open="no" data-distance="3.6">
-              <div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Al-Noor Pharmacy</a></h3><span class="badge badge--unknown">Unconfirmed</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"/></svg> Khalda, Amman <span>·</span> 3.6 km</p><p class="pharmacy-card__updated">Updated 2 days ago <span>·</span> Closed · opens 9:00 am</p></div>
-              <div class="pharmacy-card__actions"><a class="btn btn--secondary btn--sm" href="pharmacy.html">Ask on WhatsApp</a><a class="action-link" href="tel:+96260000004">Call</a><a class="action-link" href="https://maps.google.com/?q=Al-Noor+Pharmacy+Amman" target="_blank" rel="noopener">Route</a></div>
-            </article>
-          </div>
-          <button class="btn btn--secondary show-more" type="button" id="show-more">Show 8 more pharmacies</button>
-          <p class="empty-state" id="empty-state" hidden>No pharmacies match these filters. Try widening your distance or changing the stock filter.</p>
-          <div class="stock-legend"><span><i class="legend-dot legend-dot--in"></i> In stock</span><span><i class="legend-dot legend-dot--low"></i> Low</span><span><i class="legend-dot legend-dot--unknown"></i> Unconfirmed</span></div>
-        </section>
-      </div>
-    </div>
-  </section>
-
+<section class="page-intro search-page">
+<div class="container">
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="index.html">Home</a><span aria-hidden="true">›</span><span>Search results</span></nav>
+<div class="search-page__top">
+<div>
+<p class="eyebrow">MEDICINE SEARCH</p>
+<h1 class="page-title">Find it before you go.</h1>
+<p class="page-subtitle">Compare nearby pharmacies by availability, distance and opening hours.</p>
+</div>
+<form action="search.html" class="results-search" method="get" role="search">
+<svg aria-hidden="true" class="icon"><use href="#i-search"></use></svg>
+<label class="sr-only" for="results-q">Search for a medicine</label>
+<input id="results-q" name="q" placeholder="Medicine name, e.g. Panadol Extra" type="search" value="Panadol Extra 500 mg"/>
+<button class="btn btn--primary" type="submit">Search</button>
+</form>
+</div>
+<div class="results-layout">
+<aside aria-label="Search filters" class="filters card">
+<div class="filters__head"><h2>Refine results</h2><button class="text-button" id="clear-filters" type="button">Clear all</button></div>
+<label class="filter-label" for="city-filter">City</label>
+<select class="form-control" id="city-filter"><option value="Amman">Amman</option><option value="Zarqa">Zarqa</option></select>
+<label class="filter-check"><input checked="" id="in-stock" type="checkbox"/> <span>In stock only</span></label>
+<label class="filter-check"><input id="open-now" type="checkbox"/> <span>Open now</span></label>
+<div class="filter-divider"></div>
+<label class="filter-label" for="distance-filter">Within <strong id="distance-value">5 km</strong></label>
+<input id="distance-filter" max="20" min="1" type="range" value="5"/>
+<div class="range-ends"><span>1 km</span><span>20 km</span></div>
+<div class="filter-divider"></div>
+<p class="filter-label">Sort by</p>
+<label class="radio-row"><input checked="" name="sort" type="radio" value="distance"/> Nearest</label>
+<label class="radio-row"><input name="sort" type="radio" value="availability"/> Availability</label>
+</aside>
+<section aria-labelledby="results-heading" class="results-main">
+<div class="results-toolbar">
+<div><h2 id="results-heading">12 pharmacies near Abdoun</h2><p>Sorted by distance · Updated by pharmacies</p></div>
+<div aria-label="Results view" class="view-toggle" role="group">
+<button aria-pressed="true" class="view-toggle__button is-active" data-view="list" type="button">List</button>
+<button aria-pressed="false" class="view-toggle__button" data-view="map" type="button">Map</button>
+</div>
+</div>
+<div class="notice-inline"><span class="notice-inline__icon">i</span><p><strong>Panadol Extra is low nearby.</strong> Paracetamol 500 mg (generic) is in stock at 9 pharmacies. Confirm any substitution with your pharmacist. <a href="medicine.html">View generic</a></p></div>
+<div class="pharmacy-results" id="pharmacy-results">
+<article class="pharmacy-card card" data-distance="0.8" data-open="yes" data-stock="in">
+<div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Al-Shifa Pharmacy</a></h3><span class="badge badge--in">In stock</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"></use></svg> Abdoun, Amman <span>·</span> 0.8 km</p><p class="pharmacy-card__updated">Updated 12 min ago <span>·</span> Open until 12:00 am</p></div>
+<div class="pharmacy-card__actions"><a class="btn btn--primary btn--sm" href="pharmacy.html">Request reservation</a><a class="action-link" href="tel:+96260000001">Call</a><a class="action-link" href="https://maps.google.com/?q=Al-Shifa+Pharmacy+Amman" rel="noopener" target="_blank">Route</a></div>
+</article>
+<article class="pharmacy-card card" data-distance="1.4" data-open="yes" data-stock="low">
+<div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Dar Al-Dawa Pharmacy</a></h3><span class="badge badge--low">Low stock</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"></use></svg> Jabal Amman <span>·</span> 1.4 km</p><p class="pharmacy-card__updated">Updated 25 min ago <span>·</span> Open until 11:00 pm</p></div>
+<div class="pharmacy-card__actions"><a class="btn btn--primary btn--sm" href="pharmacy.html">Request reservation</a><a class="action-link" href="tel:+96260000002">Call</a><a class="action-link" href="https://maps.google.com/?q=Dar+Al-Dawa+Pharmacy+Amman" rel="noopener" target="_blank">Route</a></div>
+</article>
+<article class="pharmacy-card card" data-distance="2.1" data-open="yes" data-stock="in">
+<div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Al-Razi Pharmacy</a></h3><span class="badge badge--in">In stock</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"></use></svg> Sweifieh, Amman <span>·</span> 2.1 km</p><p class="pharmacy-card__updated">Updated 1 h ago <span>·</span> Open 24 hours</p></div>
+<div class="pharmacy-card__actions"><a class="btn btn--primary btn--sm" href="pharmacy.html">Request reservation</a><a class="action-link" href="tel:+96260000003">Call</a><a class="action-link" href="https://maps.google.com/?q=Al-Razi+Pharmacy+Amman" rel="noopener" target="_blank">Route</a></div>
+</article>
+<article class="pharmacy-card card" data-distance="3.6" data-open="no" data-stock="unknown">
+<div class="pharmacy-card__body"><div class="pharmacy-card__heading"><h3><a href="pharmacy.html">Al-Noor Pharmacy</a></h3><span class="badge badge--unknown">Unconfirmed</span></div><p class="pharmacy-card__meta"><svg class="icon icon--16"><use href="#i-pin"></use></svg> Khalda, Amman <span>·</span> 3.6 km</p><p class="pharmacy-card__updated">Updated 2 days ago <span>·</span> Closed · opens 9:00 am</p></div>
+<div class="pharmacy-card__actions"><a class="btn btn--secondary btn--sm" href="pharmacy.html">Ask on WhatsApp</a><a class="action-link" href="tel:+96260000004">Call</a><a class="action-link" href="https://maps.google.com/?q=Al-Noor+Pharmacy+Amman" rel="noopener" target="_blank">Route</a></div>
+</article>
+</div>
+<button class="btn btn--secondary show-more" id="show-more" type="button">Show 8 more pharmacies</button>
+<p class="empty-state" hidden="" id="empty-state">No pharmacies match these filters. Try widening your distance or changing the stock filter.</p>
+<div class="stock-legend"><span><i class="legend-dot legend-dot--in"></i> In stock</span><span><i class="legend-dot legend-dot--low"></i> Low</span><span><i class="legend-dot legend-dot--unknown"></i> Unconfirmed</span></div>
+</section>
+</div>
+</div>
+</section>
 </main>
-  <!-- ===================== Footer ===================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__top">
-        <div class="site-footer__brand">
-          <a class="brand" href="index.html" aria-label="Mawjood, home">
-            <svg class="brand__tile" aria-hidden="true"><use href="#logo-tile"/></svg>
-            <span class="brand__name" data-i18n="brand.name">Mawjood</span>
-          </a>
-          <p class="site-footer__tagline" data-i18n="footer.tagline">Find the pharmacy that has your medicine, before you go.</p>
-        </div>
-
-        <nav class="footer-col" aria-labelledby="footer-product">
-          <h2 class="footer-col__title" id="footer-product" data-i18n="footer.product">Product</h2>
-          <ul class="footer-col__list">
-            <li><a class="footer-col__link" href="search.html" data-i18n="footer.searchMedicines">Search medicines</a></li>
-            <li><a class="footer-col__link" href="for-pharmacies.html" data-i18n="nav.forPharmacies">For pharmacies</a></li>
-            <li><a class="footer-col__link" href="dashboard.html" data-i18n="footer.dashboardDemo">Dashboard demo</a></li>
-          </ul>
-        </nav>
-
-        <nav class="footer-col" aria-labelledby="footer-company">
-          <h2 class="footer-col__title" id="footer-company" data-i18n="footer.company">Company</h2>
-          <ul class="footer-col__list">
-            <li><a class="footer-col__link" href="about.html" data-i18n="footer.aboutTrust">About and trust</a></li>
-            <li><a class="footer-col__link" href="about.html#privacy" data-i18n="footer.privacy">Privacy</a></li>
-            <li><a class="footer-col__link" href="about.html#contact" data-i18n="footer.contact">Contact</a></li>
-          </ul>
-        </nav>
-
-        <aside class="notice" aria-label="Availability notice" data-i18n-aria-label="footer.noticeAria">
-          <svg class="icon icon--20" aria-hidden="true"><use href="#i-info"/></svg>
-          <p data-i18n="footer.notice">Availability is reported by pharmacies and may change. Please confirm with your pharmacist. Mawjood does not sell or dispense medicine.</p>
-        </aside>
-      </div>
-
-      <p class="site-footer__bottom">
-        <span data-i18n="footer.copyright">© 2026 Mawjood · Sample content</span><span class="only-desktop" data-i18n="footer.copyrightSuffix"> for design purposes</span>
-      </p>
-    </div>
-  </footer>
-  <!-- Mobile menu toggle (no dependencies) -->
-  <script>
-    (function () {
-      var header = document.querySelector('.site-header');
-      var btn = document.querySelector('.nav-toggle');
-      if (!header || !btn) return;
-      function setOpen(open) {
-        header.classList.toggle('is-nav-open', open);
-        btn.setAttribute('aria-expanded', String(open));
-      }
-      btn.addEventListener('click', function () {
-        setOpen(!header.classList.contains('is-nav-open'));
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && header.classList.contains('is-nav-open')) {
-          setOpen(false);
-          btn.focus();
-        }
-      });
-      window.matchMedia('(min-width: 900px)').addEventListener('change', function (e) {
-        if (e.matches) setOpen(false);
-      });
-    })();
-  </script>
-<script src="js/data.js" defer></script>
-<script src="js/storage.js" defer></script>
-<script src="js/i18n.js" defer></script>
-<script src="js/search.js" defer></script>
-<script src="js/map.js" defer></script>
-</body>
+<!-- ===================== Footer ===================== -->
+<footer class="site-footer">
+<div class="container">
+<div class="site-footer__top">
+<div class="site-footer__brand">
+<a aria-label="Mawjood, home" class="brand" href="index.html">
+<img alt="Mawjood" class="brand__lockup" src="assets/brand/lockup-on-navy.svg"/>
+</a>
+<p class="site-footer__tagline" data-i18n="footer.tagline">Find the pharmacy that has your medicine, before you go.</p>
+</div>
+<nav aria-labelledby="footer-product" class="footer-col">
+<h2 class="footer-col__title" data-i18n="footer.product" id="footer-product">Product</h2>
+<ul class="footer-col__list">
+<li><a class="footer-col__link" data-i18n="footer.searchMedicines" href="search.html">Search medicines</a></li>
+<li><a class="footer-col__link" data-i18n="nav.forPharmacies" href="for-pharmacies.html">For pharmacies</a></li>
+<li><a class="footer-col__link" data-i18n="footer.dashboardDemo" href="dashboard.html">Dashboard demo</a></li>
+</ul>
+</nav>
+<nav aria-labelledby="footer-company" class="footer-col">
+<h2 class="footer-col__title" data-i18n="footer.company" id="footer-company">Company</h2>
+<ul class="footer-col__list">
+<li><a class="footer-col__link" data-i18n="footer.aboutTrust" href="about.html">About and trust</a></li>
+<li><a class="footer-col__link" data-i18n="footer.privacy" href="about.html#privacy">Privacy</a></li>
+<li><a class="footer-col__link" data-i18n="footer.contact" href="for-pharmacies.html#partner-contact">Contact</a></li>
+</ul>
+</nav>
+<aside aria-label="Availability notice" class="notice" data-i18n-aria-label="footer.noticeAria">
+<svg aria-hidden="true" class="icon icon--20"><use href="#i-info"></use></svg>
+<p data-i18n="footer.notice">Availability is reported by pharmacies and may change. Please confirm with your pharmacist. Mawjood does not sell or dispense medicine.</p>
+</aside>
+</div>
+<p class="site-footer__bottom">
+<span data-i18n="footer.copyright">© 2026 Mawjood · Sample content</span><span class="only-desktop" data-i18n="footer.copyrightSuffix"> for design purposes</span>
+</p>
+</div>
+</footer>
+<!-- Mobile menu toggle (no dependencies) -->
+<script defer="" src="js/translation-dictionary.js"></script><script defer="" src="js/i18n.js"></script><script defer="" src="js/auth.js"></script><script defer="" src="js/ui.js"></script><script defer="" src="js/data.js"></script><script defer="" src="js/storage.js"></script><script defer="" src="js/search.js"></script><script defer="" src="js/map.js"></script></body>
 </html>
